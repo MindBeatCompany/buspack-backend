@@ -1,0 +1,57 @@
+import { Repository } from 'typeorm';
+import { AccountEntity } from '../account/entities/account.entity';
+import { LocalityEntity } from '../enabled-places/entities/location.entity';
+import { MinimalAccountDto } from './dtos/response/get-minimal-accounts-response.dto';
+import { UpdatePricesDto } from './dtos/request/update-prices.dto';
+import { AreaEntity } from './entities/area.entity';
+import { PricingEntity } from './entities/pricing.entity';
+import { CreatePricingDto } from './dtos/request/create-pricing.dto';
+import { MinimalLocalityDto } from './dtos/response/get-minimal-localities-response.dto';
+import { PricingToCloneDto } from './dtos/response/get-pricing-to-clone.dto';
+export declare class PricingService {
+    private pricingRepository;
+    private areaRepository;
+    private localityRepository;
+    private accountRepository;
+    constructor(pricingRepository: Repository<PricingEntity>, areaRepository: Repository<AreaEntity>, localityRepository: Repository<LocalityEntity>, accountRepository: Repository<AccountEntity>);
+    create(pricingDto: CreatePricingDto): Promise<{
+        account: {
+            id: number;
+            companyName: string;
+            idClientEntity: number;
+            idClientAgent: number;
+            cuit: string;
+            codeECO: string;
+            addressStreet: string;
+            addressNumber: string;
+            addressBuilding: string;
+            addressFloor: string;
+            addressApartment: string;
+            locality: string;
+            province: string;
+            country: string;
+            isActive: boolean;
+            accountType: string;
+            users: import("../user/entities").UserEntity[];
+            filePath: string;
+            tariff: import("../user/entities").TariffEntity[];
+            serviceRequest: import("../service-request/entities/service-request.entity").ServiceRequestEntity[];
+            hasCustomPricing: boolean;
+        };
+        id: number;
+        name: string;
+        lastAreaNumber: number;
+        areas: AreaEntity[];
+        validSince: Date;
+    }>;
+    getPricingFrom(accountId: number): Promise<PricingEntity>;
+    getPricingToClone(accountId: number): Promise<PricingToCloneDto>;
+    getAccountsWithPricing(): Promise<MinimalAccountDto[]>;
+    getAllLocalities(): Promise<MinimalLocalityDto[]>;
+    updatePricingTableFrom(accountId: number, body: UpdatePricesDto): Promise<PricingEntity>;
+    private checkIfIsValidPricing;
+    private checkIfExistADuplicatedLocality;
+    private checkExistCurrentPricingTable;
+    private findWithoutDuplicates;
+    private generateAreas;
+}

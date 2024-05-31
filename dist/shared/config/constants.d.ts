@@ -1,0 +1,15 @@
+export declare const API_PORT = "API_PORT";
+export declare const JWT_SECRET = "JWT_SECRET";
+export declare const TYPEORM_CONFIG = "database.config";
+export declare const EXPIRE_TOKEN_IN = "EXPIRE_TOKEN_IN";
+export declare const DEFAULT_USER_EMAIL = "DEFAULT_USER_EMAIL";
+export declare const DEFAULT_USER_PASSWORD = "DEFAULT_USER_PASSWORD";
+export declare const DEFAULT_USER_NAME = "DEFAULT_USER_NAME";
+export declare const DEFAULT_ACCOUNT_NAME = "DEFAULT_ACCOUNT_NAME";
+export declare const DEFAULT_ROLES = "DEFAULT_ROLES";
+export declare const MAIL_HOST = "MAIL_HOST";
+export declare const MAIL_PORT = "MAIL_PORT";
+export declare const MAIL_USER = "MAIL_USER";
+export declare const MAIL_PASSWORD = "MAIL_PASSWORD";
+export declare const MAIL_FROM = "MAIL_FROM";
+export declare const MIMETYPES: string[];

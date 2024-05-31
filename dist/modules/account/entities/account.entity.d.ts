@@ -1,0 +1,35 @@
+import { TariffEntity } from "src/modules/user/entities/tariff.entity";
+import { ServiceRequestEntity } from "src/modules/service-request/entities/service-request.entity";
+import { UserEntity } from "src/modules/user/entities/user.entity";
+import { PricingEntity } from "src/modules/pricing/entities/pricing.entity";
+import { UpdatePricesDto } from "src/modules/pricing/dtos/request/update-prices.dto";
+export declare class AccountEntity {
+    id: number;
+    companyName: string;
+    idClientEntity: number;
+    idClientAgent: number;
+    cuit: string;
+    codeECO: string;
+    addressStreet: string;
+    addressNumber: string;
+    addressBuilding: string;
+    addressFloor: string;
+    addressApartment: string;
+    locality: string;
+    province: string;
+    country: string;
+    isActive: boolean;
+    accountType: string;
+    users: UserEntity[];
+    filePath: string;
+    tariff: TariffEntity[];
+    serviceRequest: ServiceRequestEntity[];
+    pricings: PricingEntity[];
+    hasCustomPricing: boolean;
+    validatePricing(name: string, validSince: Date): void;
+    updateCurrentPrices(updatePricesRequest: UpdatePricesDto): PricingEntity;
+    currentPricing(): PricingEntity;
+    haveCurrentPricing(): boolean;
+    private existPricingCalled;
+    private canChange;
+}

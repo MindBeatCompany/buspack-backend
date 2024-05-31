@@ -1,0 +1,34 @@
+import { AccountEntity } from "../../account/entities/account.entity";
+export declare class ServiceRequestEntity {
+    id: number;
+    account: AccountEntity;
+    requestId: string;
+    recipientFullname: string;
+    docType: string;
+    docNumber: number;
+    phone: string;
+    email: string;
+    addressStreet: string;
+    addressNumber: string;
+    addressBuilding: string;
+    addressFloor: string;
+    addressApartment: string;
+    addressCpa: string;
+    enabledPlace: string;
+    locality: string;
+    province: string;
+    cpa: string;
+    qtyPieces: number;
+    totalWeight: number;
+    homeDelivery: boolean;
+    observations: string;
+    idfile: string;
+    link: string;
+    voucher: string;
+    delivery: string;
+    status: string;
+    statusDatetime: Date;
+    updateAt: Date;
+    createdAt: Date;
+    deletedAt: Date;
+}

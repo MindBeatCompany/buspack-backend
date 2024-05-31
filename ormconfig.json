@@ -1,0 +1,21 @@
+{
+  "type": "mysql",
+  "host": "192.168.156.131",
+  "port": 3306,
+  "username": "app_buspack",
+  "password": "Guo*yE=n4wgCfn+axUr",
+  "database": "backendnest",
+  "entities": [
+    "/home/it-soporte/repos/backendBuspackNewRelease/backend/dist/**/**/*/*entity{.ts,.js}"
+  ],
+  "autoLoadEntities": false,
+  "migrationsRun": false,
+  "migrations": [
+    "/home/it-soporte/repos/backendBuspackNewRelease/backend/dist/migration/**/*{.ts,.js}"
+  ],
+  "migrationsTableName": "migrations",
+  "cli": {
+    "migrationsDir": "src/migration"
+  },
+  "synchronize": false
+}
