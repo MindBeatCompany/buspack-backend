@@ -15,4 +15,5 @@ export declare class PrintLabelsRequestDTO {
     province: string;
     tracking: string;
     ed: string;
+    voucher: string;
 }

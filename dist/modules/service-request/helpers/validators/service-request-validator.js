@@ -17,10 +17,12 @@ const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
 const account_entity_1 = require("../../../account/entities/account.entity");
 const entities_1 = require("../../../user/entities");
+const enabled_places_service_1 = require("../../../enabled-places/enabled-places.service");
 const can_be_empty_fields_1 = require("../../shared/can-be-empty-fields");
 let ServiceRequestValidator = class ServiceRequestValidator {
-    constructor(tariffRepository) {
+    constructor(tariffRepository, enabledPlacesService) {
         this.tariffRepository = tariffRepository;
+        this.enabledPlacesService = enabledPlacesService;
     }
     async validate(rawData, account, dtv = null, isFileUploading) {
         const response = [];
@@ -44,6 +46,8 @@ let ServiceRequestValidator = class ServiceRequestValidator {
                         }
                     });
                 }
+                console.log(enabledPlace.value);
+                console.log("JOJOJOJOJOJJOJOJOJOJOJOJOJOJOJOJOJOJOJOJOJOJOJOJOJO");
                 response.push({
                     requestId,
                     recipientFullname,
@@ -108,7 +112,8 @@ let ServiceRequestValidator = class ServiceRequestValidator {
 ServiceRequestValidator = __decorate([
     common_1.Injectable(),
     __param(0, typeorm_1.InjectRepository(entities_1.TariffEntity)),
-    __metadata("design:paramtypes", [typeorm_2.Repository])
+    __metadata("design:paramtypes", [typeorm_2.Repository,
+        enabled_places_service_1.EnabledPlacesService])
 ], ServiceRequestValidator);
 exports.default = ServiceRequestValidator;
 //# sourceMappingURL=service-request-validator.js.map

@@ -1,11 +1,12 @@
 
-import { Injectable } from "@nestjs/common";
+import { Inject, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { LessThanOrEqual, MoreThanOrEqual, Repository } from "typeorm";
-
 import { AccountEntity } from "src/modules/account/entities/account.entity";
 import { TariffEntity } from "src/modules/user/entities";
+import { EnabledPlacesService } from "src/modules/enabled-places/enabled-places.service";
 import  canBeEmptyFields  from "../../shared/can-be-empty-fields";
+
 
 @Injectable()
 export default abstract class ServiceRequestValidator {
@@ -13,6 +14,7 @@ export default abstract class ServiceRequestValidator {
     constructor(
         @InjectRepository(TariffEntity)
         private readonly tariffRepository: Repository<TariffEntity>,
+        public readonly enabledPlacesService: EnabledPlacesService,
     ) { }
     public async validate(rawData: any[],
                           account: AccountEntity,
@@ -63,7 +65,10 @@ export default abstract class ServiceRequestValidator {
                       }
 
                     });
-                }
+                }            
+
+                console.log(enabledPlace.value)
+                console.log("JOJOJOJOJOJJOJOJOJOJOJOJOJOJOJOJOJOJOJOJOJOJOJOJOJO")
 
                 response.push({
                     requestId,
@@ -89,6 +94,7 @@ export default abstract class ServiceRequestValidator {
             } else {
                 throw new Error("Hay filas que no tienen identificación.");
             }
+
         }));
 
         return response;

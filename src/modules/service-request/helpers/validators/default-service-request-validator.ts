@@ -7,7 +7,7 @@ import { srFieldResponse } from "./sr-field-response";
 @Injectable()
 export default class DefaultServiceRequestValidator extends ServiceRequestValidator {
 
-    protected validateRowData(row: any, dtv: any, isFileUploading: boolean) {
+    protected async validateRowData(row: any, dtv: any, isFileUploading: boolean) {
         let requestId = this.validateAttributte(row.requestId.toString(), "string");
 
         // Recipient
@@ -36,6 +36,28 @@ export default class DefaultServiceRequestValidator extends ServiceRequestValida
 
         // Geo
         let enabledPlace = this.validateAttributte(row.enabledPlace, "string");
+
+        /*
+        
+        
+        try {
+          console.log("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
+          const places = await this.enabledPlacesService.getEnabledPlacesSaitForValidator();
+          console.log(places);
+          console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+          
+          const placeExists = places.some(place => place === enabledPlace.value);
+          if (!placeExists) {
+            enabledPlace.error = "Localidad no habilitada en Sait, pedir Soporte.";
+          }
+      } catch (error) {
+          console.error(error);
+          throw new Error(`Error al validar el lugar "${enabledPlace.value}".`);
+      }
+      */
+
+      
+        
         let locality = this.validateAttributte(row.locality, "string");
         let province = this.validateAttributte(row.province, "string");
         let cpa = this.validateAttributte(row.cpa.toString(), "string");

@@ -46,6 +46,25 @@ export class EnabledPlacesService {
       });
   }
 
+  async getEnabledPlacesSaitForValidator(): Promise<String[]> {
+
+      try {
+          let token = await this.serviceSaitService.saitAccessToken();
+          const data = await this.http
+              .get(`${this.saitBaseUrl}${this.enabledPlacesURL}${token.token}`)
+              .toPromise();
+  
+          if (data.status === 201 && Array.isArray(data.data.registros)) {
+              return data.data.registros.map((location: any) => this.mapperOut(location));
+          } else {
+              return [];
+          }
+      } catch (error) {
+          console.error(error);
+          throw new Error(messages.enabledPlace);
+      }
+  }
+
   private async save(locations: EnabledPlacesResponseDTO[]): Promise<void> {
     await this.enabledPlaceRepository.clear();
     for (let index = 0; index < locations.length; index++) {

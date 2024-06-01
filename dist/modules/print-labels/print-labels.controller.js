@@ -22,10 +22,37 @@ let PrintLabelsController = class PrintLabelsController {
         this.printLabelsService = printLabelsService;
         this.printLabelsMapper = printLabelsMapper;
     }
-    async getPDF(data, res) {
-        const buffer = await this.printLabelsService.generatePDF(data.map(d => this.printLabelsMapper.dtoToDomainMapperIn(d)));
+    async getPDFA4(data, res) {
+        const buffer = await this.printLabelsService.generatePDFA4(data.map(d => this.printLabelsMapper.dtoToDomainMapperIn(d)));
         res.set({
-            'Content-Type': 'application/pdf',
+            'Content-Type': 'application/pdfA4',
+            'Content-Disposition': 'attachment; filename=example.pdf',
+            'Content-Length': buffer.length,
+        });
+        res.send(buffer);
+    }
+    async getPDF10x10(data, res) {
+        const buffer = await this.printLabelsService.generatePDF10x10(data.map(d => this.printLabelsMapper.dtoToDomainMapperIn(d)));
+        res.set({
+            'Content-Type': 'application/pdf10x10',
+            'Content-Disposition': 'attachment; filename=example.pdf',
+            'Content-Length': buffer.length,
+        });
+        res.send(buffer);
+    }
+    async getPDF10x15(data, res) {
+        const buffer = await this.printLabelsService.generatePDF10x15(data.map(d => this.printLabelsMapper.dtoToDomainMapperIn(d)));
+        res.set({
+            'Content-Type': 'application/pdf10x15',
+            'Content-Disposition': 'attachment; filename=example.pdf',
+            'Content-Length': buffer.length,
+        });
+        res.send(buffer);
+    }
+    async getPDF10x20(data, res) {
+        const buffer = await this.printLabelsService.generatePDF10x20(data.map(d => this.printLabelsMapper.dtoToDomainMapperIn(d)));
+        res.set({
+            'Content-Type': 'application/pdf10x20',
             'Content-Disposition': 'attachment; filename=example.pdf',
             'Content-Length': buffer.length,
         });
@@ -33,7 +60,7 @@ let PrintLabelsController = class PrintLabelsController {
     }
 };
 __decorate([
-    common_1.Post('/pdf'),
+    common_1.Post('/pdfA4'),
     common_1.Header("Content-type", "application/vnd.ms-excel"),
     openapi.ApiResponse({ status: 201 }),
     __param(0, common_1.Body()),
@@ -41,7 +68,37 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Array, Object]),
     __metadata("design:returntype", Promise)
-], PrintLabelsController.prototype, "getPDF", null);
+], PrintLabelsController.prototype, "getPDFA4", null);
+__decorate([
+    common_1.Post('/pdf10x10'),
+    common_1.Header("Content-type", "application/vnd.ms-excel"),
+    openapi.ApiResponse({ status: 201 }),
+    __param(0, common_1.Body()),
+    __param(1, common_1.Res()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Array, Object]),
+    __metadata("design:returntype", Promise)
+], PrintLabelsController.prototype, "getPDF10x10", null);
+__decorate([
+    common_1.Post('/pdf10x15'),
+    common_1.Header("Content-type", "application/vnd.ms-excel"),
+    openapi.ApiResponse({ status: 201 }),
+    __param(0, common_1.Body()),
+    __param(1, common_1.Res()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Array, Object]),
+    __metadata("design:returntype", Promise)
+], PrintLabelsController.prototype, "getPDF10x15", null);
+__decorate([
+    common_1.Post('/pdf10x20'),
+    common_1.Header("Content-type", "application/vnd.ms-excel"),
+    openapi.ApiResponse({ status: 201 }),
+    __param(0, common_1.Body()),
+    __param(1, common_1.Res()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Array, Object]),
+    __metadata("design:returntype", Promise)
+], PrintLabelsController.prototype, "getPDF10x20", null);
 PrintLabelsController = __decorate([
     common_1.Controller('print-labels'),
     __metadata("design:paramtypes", [print_labels_service_1.PrintLabelsService, print_labels_mapper_1.PrintLabelsMapper])
