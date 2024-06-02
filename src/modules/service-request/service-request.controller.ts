@@ -67,11 +67,13 @@ export class ServiceRequestController {
     @Query('request-id') requestId:string,
     @Query('voucher') voucher:string,
     @Query('delivery') delivery:string,
+    @Query('dateFrom') dateFrom:string,
+    @Query('dateTo') dateTo:string,
     @Res() res: any
   ): Promise<any> {
     const { user } = res.req;
     const { account } = user;
-    return this.serviceServRequest.getByRequestIdVoucherAndDelivery(requestId, voucher, delivery, account)
+    return this.serviceServRequest.getByRequestIdVoucherAndDelivery(requestId, voucher, delivery, account, dateFrom, dateTo)
     .then(async (result) => {
       return await res.status(HttpStatus.OK).json({
         status: HttpStatus.OK,

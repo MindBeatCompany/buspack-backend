@@ -195,14 +195,87 @@ export class ServiceRequestService {
     }
   }
 
-  public async getByRequestIdVoucherAndDelivery(requestId: string, voucher: string, delivery: string, account: AccountEntity) {
+  public async getByRequestIdVoucherAndDelivery(requestId: string, voucher: string, delivery: string, account: AccountEntity, dateFrom: string, dateTo: string) {
 
     try {
+
+      if( dateFrom !="" && dateTo != ""){
+
+        const dateStringFrom =  dateFrom;
+        const dateObjectFrom = new Date(dateStringFrom);
+        dateObjectFrom.setHours(0, 0, 0, 0);
+    
+        let dateStringToDate =  dateTo;
+        const dateObjectToDate = new Date(dateStringToDate);
+        dateObjectToDate.setHours(23, 0, 0, 0);
+
+        let myQuery = {
+          where: {
+            account: account,
+            requestId: requestId,
+            voucher: voucher,
+            createdAt : Between(dateObjectFrom, dateObjectToDate),
+            delivery: Like(`%${delivery}%`),
+          }
+        };
+  
+        if (requestId === "") {
+          delete myQuery.where.requestId;
+        }
+  
+        if (voucher === "") {
+          delete myQuery.where.voucher;
+        }
+  
+        if (delivery === "") {
+          delete myQuery.where.delivery;
+        }
+
+        const serviceRequestArray = await this.serviceRequestRepository.find(myQuery);
+
+        // creo un array de piezas por cada solicitud
+  
+        const LabelResponse: LabelServiceRequestDto[] = [];
+  
+        serviceRequestArray.forEach(element => {
+  
+          // me fijo en delivery y creo array
+  
+          const myElement = element;
+  
+          const delivery = element.delivery;
+          const deliveryArray = delivery.split(";");
+  
+          deliveryArray.forEach(piece => {
+  
+            let labelReturn = new LabelServiceRequestDto();
+  
+            labelReturn.pieceId = piece;
+            labelReturn.recipientFullname = myElement.recipientFullname;
+            labelReturn.address = myElement.addressStreet + " " + (myElement.addressNumber == null ? "" : myElement.addressNumber) + " " + (myElement.addressBuilding == null ? "" : myElement.addressBuilding) + " " + (myElement.addressFloor == null ? "" : myElement.addressFloor) + " " + (myElement.addressApartment == null ? "" : myElement.addressApartment);
+            labelReturn.cpa = myElement.cpa;
+            labelReturn.city = myElement.locality;
+            labelReturn.province = myElement.province;
+            labelReturn.requestId = myElement.requestId;
+            labelReturn.shipping = myElement.homeDelivery ? "Entrega en domicilio" : "Entrega en sucursal",
+            labelReturn.voucher = myElement.voucher;
+            labelReturn.status = myElement.status;
+            labelReturn.observations = myElement.observations;
+            labelReturn.phone = myElement.phone;
+  
+            LabelResponse.push(labelReturn);
+          });
+        });
+        return LabelResponse;
+
+      }else{
+            
       let myQuery = {
         where: {
           account: account,
           requestId: requestId,
           voucher: voucher,
+
           delivery: Like(`%${delivery}%`),
         }
       };
@@ -255,6 +328,10 @@ export class ServiceRequestService {
         });
       });
       return LabelResponse;
+
+    }
+
+
     } catch (error) {
       throw new Error(error);
     }
