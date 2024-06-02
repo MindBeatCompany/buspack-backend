@@ -181,6 +181,8 @@ let ServiceRequestService = class ServiceRequestService {
                     labelReturn.shipping = myElement.homeDelivery ? "Entrega en domicilio" : "Entrega en sucursal",
                         labelReturn.voucher = myElement.voucher;
                     labelReturn.status = myElement.status;
+                    labelReturn.observations = myElement.observations;
+                    labelReturn.phone = myElement.phone;
                     LabelResponse.push(labelReturn);
                 });
             });

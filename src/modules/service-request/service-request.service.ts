@@ -246,8 +246,10 @@ export class ServiceRequestService {
           labelReturn.province = myElement.province;
           labelReturn.requestId = myElement.requestId;
           labelReturn.shipping = myElement.homeDelivery ? "Entrega en domicilio" : "Entrega en sucursal",
-            labelReturn.voucher = myElement.voucher;
+          labelReturn.voucher = myElement.voucher;
           labelReturn.status = myElement.status;
+          labelReturn.observations = myElement.observations;
+          labelReturn.phone = myElement.phone;
 
           LabelResponse.push(labelReturn);
         });
@@ -257,6 +259,7 @@ export class ServiceRequestService {
       throw new Error(error);
     }
   }
+
 
   public async getByQuery(requestId: string, voucher: string, delivery: string, fromDate: string, toDate: string, account: AccountEntity) {
 
