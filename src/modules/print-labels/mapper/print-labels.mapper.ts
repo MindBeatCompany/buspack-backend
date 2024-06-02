@@ -18,6 +18,7 @@ export class PrintLabelsMapper{
             city: printLabels.city, 
             province: printLabels.province,
             ed: printLabels.ed,
+            voucher: printLabels.voucher,
         }
     }
 }

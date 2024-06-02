@@ -9,4 +9,6 @@ export declare class LabelServiceRequestDto {
     shipping: string;
     voucher: string;
     status: string;
+    phone: string;
+    observations: string;
 }

@@ -1,9 +1,11 @@
 import { Repository } from "typeorm";
 import { AccountEntity } from "src/modules/account/entities/account.entity";
 import { TariffEntity } from "src/modules/user/entities";
+import { EnabledPlacesService } from "src/modules/enabled-places/enabled-places.service";
 export default abstract class ServiceRequestValidator {
     private readonly tariffRepository;
-    constructor(tariffRepository: Repository<TariffEntity>);
+    readonly enabledPlacesService: EnabledPlacesService;
+    constructor(tariffRepository: Repository<TariffEntity>, enabledPlacesService: EnabledPlacesService);
     validate(rawData: any[], account: AccountEntity, dtv: any, isFileUploading: any): Promise<any[]>;
     protected abstract validateRowData(row: any, dtv: any, isFileUploading: boolean): any;
     protected getAttrCantBeEmptyErrMsge(): string;

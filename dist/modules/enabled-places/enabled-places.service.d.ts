@@ -11,6 +11,7 @@ export declare class EnabledPlacesService {
     private enabledPlacesURL;
     constructor(http: HttpService, enabledPlaceRepository: Repository<EnabledPlaceEntity>, saitBaseUrl: string, saitTokenApi: string, serviceSaitService: ServicesSaitService);
     getEnabledPlacesSait(): Promise<void>;
+    getEnabledPlacesSaitForValidator(): Promise<String[]>;
     private save;
     private mapperOut;
 }

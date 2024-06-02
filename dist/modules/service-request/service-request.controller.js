@@ -46,10 +46,10 @@ let ServiceRequestController = class ServiceRequestController {
             });
         });
     }
-    async getByRequestIdVoucherAndDelivery(requestId, voucher, delivery, res) {
+    async getByRequestIdVoucherAndDelivery(requestId, voucher, delivery, dateFrom, dateTo, res) {
         const { user } = res.req;
         const { account } = user;
-        return this.serviceServRequest.getByRequestIdVoucherAndDelivery(requestId, voucher, delivery, account)
+        return this.serviceServRequest.getByRequestIdVoucherAndDelivery(requestId, voucher, delivery, account, dateFrom, dateTo)
             .then(async (result) => {
             return await res.status(common_1.HttpStatus.OK).json({
                 status: common_1.HttpStatus.OK,
@@ -283,9 +283,11 @@ __decorate([
     __param(0, common_1.Query('request-id')),
     __param(1, common_1.Query('voucher')),
     __param(2, common_1.Query('delivery')),
-    __param(3, common_1.Res()),
+    __param(3, common_1.Query('dateFrom')),
+    __param(4, common_1.Query('dateTo')),
+    __param(5, common_1.Res()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String, String, Object]),
+    __metadata("design:paramtypes", [String, String, String, String, String, Object]),
     __metadata("design:returntype", Promise)
 ], ServiceRequestController.prototype, "getByRequestIdVoucherAndDelivery", null);
 __decorate([

@@ -7,7 +7,7 @@ export declare class ServiceRequestController {
     private readonly serviceServRequest;
     constructor(serviceServRequest: ServiceRequestService);
     getAllServiceRequest(res: any): Promise<any>;
-    getByRequestIdVoucherAndDelivery(requestId: string, voucher: string, delivery: string, res: any): Promise<any>;
+    getByRequestIdVoucherAndDelivery(requestId: string, voucher: string, delivery: string, dateFrom: string, dateTo: string, res: any): Promise<any>;
     getByQuery(requestId: string, voucher: string, delivery: string, fromDate: string, toDate: string, res: any): Promise<any>;
     uploadServiceRequest(res: any, file: any, isStandardFormat: string): Promise<ServiceRequestEntity>;
     downloadTemplateFile(res: any): Promise<void>;

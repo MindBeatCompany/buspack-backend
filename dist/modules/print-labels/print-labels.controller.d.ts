@@ -6,5 +6,8 @@ export declare class PrintLabelsController {
     private readonly printLabelsService;
     private readonly printLabelsMapper;
     constructor(printLabelsService: PrintLabelsService, printLabelsMapper: PrintLabelsMapper);
-    getPDF(data: PrintLabelsRequestDTO[], res: Response): Promise<void>;
+    getPDFA4(data: PrintLabelsRequestDTO[], res: Response): Promise<void>;
+    getPDF10x10(data: PrintLabelsRequestDTO[], res: Response): Promise<void>;
+    getPDF10x15(data: PrintLabelsRequestDTO[], res: Response): Promise<void>;
+    getPDF10x20(data: PrintLabelsRequestDTO[], res: Response): Promise<void>;
 }
