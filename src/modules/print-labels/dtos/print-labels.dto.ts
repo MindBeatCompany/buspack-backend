@@ -16,4 +16,5 @@ export class PrintLabelsRequestDTO {
   tracking:string;
   ed:string;
   voucher:string;
+  phone:string;
 }

@@ -12,4 +12,6 @@ export declare class PrintLabels {
     ecoCode: string;
     ed: string;
     voucher: string;
+    phone: string;
+    observations: string;
 }

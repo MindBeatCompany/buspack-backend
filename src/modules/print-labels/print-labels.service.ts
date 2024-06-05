@@ -84,7 +84,7 @@ export class PrintLabelsService {
           // .moveTo(marginlefttext1 + 66, initLine + lineHeight * 9 - offset)
           // .lineTo(340, initLine + lineHeight * 9 - offset)
           // .stroke()
-          .text("N° de Pieza:", marginlefttext1 + 150, initLine + lineHeight * 8)
+          .text("N° de guia:", marginlefttext1 + 150, initLine + lineHeight * 8)
           .text(
             data[i * 2].pieceId + "",
             marginlefttext1 + 210,
@@ -159,6 +159,11 @@ export class PrintLabelsService {
           .moveTo(marginlefttext1 + 50, secondLine + lineHeight * 9 - offset)
           .lineTo(340, secondLine + lineHeight * 9 - offset)
           .stroke()
+          .text(
+            data[i * 2].phone,
+            marginlefttext1 + 52,
+            secondLine + lineHeight * 8
+          )
           .moveTo(marginlefttext1 + 50, secondLine + lineHeight * 10 - offset)
           .lineTo(340, secondLine + lineHeight * 10 - offset)
           .stroke()
@@ -166,6 +171,10 @@ export class PrintLabelsService {
           .moveTo(marginlefttext1 + 90, secondLine + lineHeight * 11 - offset)
           .lineTo(340, secondLine + lineHeight * 11 - offset)
           .stroke()
+          .text(data[i * 2].observations,
+          marginlefttext1 + 92,
+          secondLine + lineHeight * 10
+          )
           .moveTo(marginlefttext1, secondLine + lineHeight * 12 - offset)
           .lineTo(340, secondLine + lineHeight * 12 - offset)
           .stroke();
@@ -226,7 +235,7 @@ export class PrintLabelsService {
               marginlefttext2 + 68,
               initLine + lineHeight * 8
             )
-            .text("N° de Pieza:", marginlefttext2 + 150, initLine + lineHeight * 8)
+            .text("N° de guia:", marginlefttext2 + 150, initLine + lineHeight * 8)
             .text(
               data[i * 2 + 1].pieceId + "",
               marginlefttext2 + 210,
@@ -298,6 +307,11 @@ export class PrintLabelsService {
             .moveTo(marginlefttext2 + 48, secondLine + lineHeight * 9 - offset)
             .lineTo(680, secondLine + lineHeight * 9 - offset)
             .stroke()
+            .text(
+              data[i * 2].phone,
+              marginlefttext2 + 52,
+              secondLine + lineHeight * 8
+            )
             .moveTo(marginlefttext2 + 48, secondLine + lineHeight * 10 - offset)
             .lineTo(680, secondLine + lineHeight * 10 - offset)
             .stroke()
@@ -309,6 +323,11 @@ export class PrintLabelsService {
             .moveTo(marginlefttext2 + 78, secondLine + lineHeight * 11 - offset)
             .lineTo(680, secondLine + lineHeight * 11 - offset)
             .stroke()
+            .text(
+              data[i * 2].observations,
+              marginlefttext2 + 80,
+              secondLine + lineHeight * 10
+            )
             .moveTo(marginlefttext2, secondLine + lineHeight * 12 - offset)
             .lineTo(680, secondLine + lineHeight * 12 - offset)
             .stroke()
@@ -442,9 +461,11 @@ export class PrintLabelsService {
                   .text(data[i].cpa, marginlefttext1 + 19, secondLine + lineHeight * 6.2)
                   .font("Helvetica-Bold")
                   .text("Teléfono:", marginlefttext1, secondLine + lineHeight * 7.5)
+                  .text(data[i].phone,marginlefttext1 + 47,secondLine + lineHeight * 7.5)
                   .font("Helvetica")
                   .font("Helvetica-Bold")
                   .text("Observacion:", marginlefttext1, secondLine + lineHeight * 8.8)
+                  .text(data[i].observations,marginlefttext1 + 65,secondLine + lineHeight * 8.8)
                   .font("Helvetica")
                   .font("Helvetica-Bold")
                   .fontSize(14)
@@ -568,9 +589,11 @@ export class PrintLabelsService {
                 .text(data[i].cpa, marginlefttext1 + 19, forthLine + lineHeight * 4)
                 .font("Helvetica-Bold")
                 .text("Teléfono:", marginlefttext1, forthLine + lineHeight * 5.5)
+                .text(data[i].phone,marginlefttext1 + 47,forthLine + lineHeight * 5.5)
                 .font("Helvetica")
                 .font("Helvetica-Bold")
                 .text("Observacion:", marginlefttext1, forthLine + lineHeight * 7)
+                .text(data[i].observations,marginlefttext1 + 68,forthLine + lineHeight * 7)
                 .font("Helvetica")
                 .font("Helvetica-Bold")
                 .fontSize(14)
@@ -719,12 +742,14 @@ private generatebarcode10x15(data: string): Promise<Buffer> {
                 .text(data[i].cpa, marginlefttext1 + 19, fifthLine + lineHeight * 4)
                 .font("Helvetica-Bold")
                 .text("Teléfono:", marginlefttext1, fifthLine + lineHeight * 5.5)
+                .text(data[i].phone,marginlefttext1 + 47,fifthLine + lineHeight * 5.5)
                 .font("Helvetica")
                 .font("Helvetica-Bold")
                 .fontSize(14)
                 .text("Pieza: "+ (i+1).toString()  + " / " + pages.toString() , marginlefttext1 + 188, fifthLine + lineHeight * 4.5)
                 .fontSize(10.5)
                 .text("Observacion:", marginlefttext1, fifthLine + lineHeight * 7)
+                .text(data[i].observations,marginlefttext1 + 69,fifthLine + lineHeight * 7)
                 .font("Helvetica")
                 .font("Helvetica-Bold")
                 
