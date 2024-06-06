@@ -14,5 +14,7 @@ export class PrintLabels {
   ed:string;
   //fullname: string;
   voucher: string;
+  phone: string;
+  observations: string;
 }
   
