@@ -14,4 +14,5 @@ export declare class PrintLabels {
     voucher: string;
     phone: string;
     observations: string;
+    origin: string;
 }

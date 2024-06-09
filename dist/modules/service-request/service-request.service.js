@@ -162,6 +162,11 @@ let ServiceRequestService = class ServiceRequestService {
                         delivery: typeorm_1.Like(`%${delivery}%`),
                     }
                 };
+                let query = {
+                    where: {
+                        account: account
+                    }
+                };
                 if (requestId === "") {
                     delete myQuery.where.requestId;
                 }
@@ -172,8 +177,10 @@ let ServiceRequestService = class ServiceRequestService {
                     delete myQuery.where.delivery;
                 }
                 const serviceRequestArray = await this.serviceRequestRepository.find(myQuery);
+                const fullAddress = `${account.addressStreet} ${account.addressNumber}, ${account.locality}`;
+                const filteredArray = serviceRequestArray.filter(element => element.voucher !== null);
                 const LabelResponse = [];
-                serviceRequestArray.forEach(element => {
+                filteredArray.forEach(element => {
                     const myElement = element;
                     const delivery = element.delivery;
                     const deliveryArray = delivery.split(";");
@@ -191,6 +198,7 @@ let ServiceRequestService = class ServiceRequestService {
                         labelReturn.status = myElement.status;
                         labelReturn.observations = myElement.observations;
                         labelReturn.phone = myElement.phone;
+                        labelReturn.origin = fullAddress;
                         LabelResponse.push(labelReturn);
                     });
                 });
@@ -215,8 +223,9 @@ let ServiceRequestService = class ServiceRequestService {
                     delete myQuery.where.delivery;
                 }
                 const serviceRequestArray = await this.serviceRequestRepository.find(myQuery);
+                const filteredArray = serviceRequestArray.filter(element => element.voucher !== null);
                 const LabelResponse = [];
-                serviceRequestArray.forEach(element => {
+                filteredArray.forEach(element => {
                     const myElement = element;
                     const delivery = element.delivery;
                     const deliveryArray = delivery.split(";");

@@ -11,4 +11,5 @@ export declare class LabelServiceRequestDto {
     status: string;
     phone: string;
     observations: string;
+    origin: string;
 }

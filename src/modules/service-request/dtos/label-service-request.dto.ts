@@ -38,4 +38,7 @@ export class LabelServiceRequestDto {
   @IsString()
   observations: string;
 
+  @IsString()
+  origin: string;
+
 }

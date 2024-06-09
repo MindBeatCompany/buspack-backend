@@ -26,6 +26,7 @@ let PrintLabelsMapper = class PrintLabelsMapper {
             voucher: printLabels.voucher,
             phone: printLabels.phone,
             observations: printLabels.observations,
+            origin: printLabels.origin,
         };
     }
 };

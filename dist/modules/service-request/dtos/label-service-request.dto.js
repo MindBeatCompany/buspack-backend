@@ -14,7 +14,7 @@ const openapi = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
 class LabelServiceRequestDto {
     static _OPENAPI_METADATA_FACTORY() {
-        return { pieceId: { required: true, type: () => Object }, recipientFullname: { required: true, type: () => String }, address: { required: true, type: () => String }, cpa: { required: true, type: () => String }, city: { required: true, type: () => String }, province: { required: true, type: () => String }, requestId: { required: true, type: () => String }, shipping: { required: true, type: () => String }, voucher: { required: true, type: () => String }, status: { required: true, type: () => String }, phone: { required: true, type: () => String }, observations: { required: true, type: () => String } };
+        return { pieceId: { required: true, type: () => Object }, recipientFullname: { required: true, type: () => String }, address: { required: true, type: () => String }, cpa: { required: true, type: () => String }, city: { required: true, type: () => String }, province: { required: true, type: () => String }, requestId: { required: true, type: () => String }, shipping: { required: true, type: () => String }, voucher: { required: true, type: () => String }, status: { required: true, type: () => String }, phone: { required: true, type: () => String }, observations: { required: true, type: () => String }, origin: { required: true, type: () => String } };
     }
 }
 __decorate([
@@ -65,5 +65,9 @@ __decorate([
     class_validator_1.IsString(),
     __metadata("design:type", String)
 ], LabelServiceRequestDto.prototype, "observations", void 0);
+__decorate([
+    class_validator_1.IsString(),
+    __metadata("design:type", String)
+], LabelServiceRequestDto.prototype, "origin", void 0);
 exports.LabelServiceRequestDto = LabelServiceRequestDto;
 //# sourceMappingURL=label-service-request.dto.js.map

@@ -17,4 +17,5 @@ export declare class PrintLabelsRequestDTO {
     ed: string;
     voucher: string;
     phone: string;
+    origin: string;
 }
