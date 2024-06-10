@@ -55,11 +55,8 @@ export class PrintLabelsService {
           .moveTo(marginlefttext1 + 45, initLine + lineHeight * 4 - offset)
           .lineTo(340, initLine + lineHeight * 4 - offset)
           .stroke()
-          .text(
-            "Dirección del origen:",
-            marginlefttext1,
-            initLine + lineHeight * 5
-          )
+          .text("Dirección del origen:", marginlefttext1, initLine + lineHeight * 5)
+          .text(data[i * 2].origin + "",marginlefttext1 + 68,initLine + lineHeight * 8)
           // .text(
           //   this.overflowText(data[i * 2].address, 48),
           //   marginlefttext1 + 102,
@@ -212,17 +209,8 @@ export class PrintLabelsService {
             .moveTo(marginlefttext2 + 45, initLine + lineHeight * 4 - offset)
             .lineTo(680, initLine + lineHeight * 4 - offset)
             .stroke()
-            .text(
-              "Dirección del origen:",
-              marginlefttext2,
-              initLine + lineHeight * 5
-            )
-            // .text(
-            //   data[i * 2 + 1].address,
-            //   marginlefttext2 + 102,
-            //   initLine + lineHeight * 5,
-            //   { width: 140, lineGap: 5 }
-            // )
+            .text("Dirección del origen:",marginlefttext2, initLine + lineHeight * 5)
+            .text(data[i * 2 + 1].origin + "",marginlefttext1 + 68,initLine + lineHeight * 8)
             .moveTo(marginlefttext2 + 100, initLine + lineHeight * 6 - offset)
             .lineTo(680, initLine + lineHeight * 6 - offset)
             .stroke()
@@ -245,8 +233,8 @@ export class PrintLabelsService {
               width: 120,
             })
             .fontSize(18)
-            .text(data[i * 2].city, marginlefttext2 + 16, initLine + lineHeight * 12.5)
-            .text(data[i * 2].province, marginlefttext2 + 16, initLine + lineHeight * 14.5)
+            .text(data[i * 2 + 1].city, marginlefttext2 + 16, initLine + lineHeight * 12.5)
+            .text(data[i * 2 + 1].province, marginlefttext2 + 16, initLine + lineHeight * 14.5)
             .fontSize(10)
             .text("Destino:", marginlefttext2, secondLine + lineHeight)
             .text(
@@ -355,8 +343,6 @@ export class PrintLabelsService {
 
     return pdfBuffer;
   }
-
-
 
   private generatebarcode(data: string): Promise<Buffer> { // TODO VER como apostrofe (') y no guion (-)  PRINTEA EL STRING 
     return bwipjs.toBuffer({
@@ -542,7 +528,7 @@ export class PrintLabelsService {
                 .font("Helvetica-Bold")
                 .fontSize(20)
                 .text(data[i].ed, marginlefttext1 + 225, initLine - 28 + lineHeight)
-                .fontSize(10.5)
+                .fontSize(10)
                 .text("Remitente: ", marginlefttext1, initLine + lineHeight )
                 .text("C. Cliente: ", marginlefttext1, initLine + lineHeight * 2.5)
                 .font("Helvetica")
@@ -554,7 +540,7 @@ export class PrintLabelsService {
                 .font("Helvetica-Bold")
                 .text("Direccion:", marginlefttext1, initLine + lineHeight * 5.5)
                 .font("Helvetica")
-                .text(this.overflowText(data[i].address, 48), marginlefttext1 + 56, initLine + lineHeight * 5.5, { width: 250, lineGap: 4 }) // no es adress de destino
+                .text(this.overflowText(data[i].origin, 48), marginlefttext1 + 56, initLine + lineHeight * 5.5, { width: 250, lineGap: 4 }) // no es adress de destino
                 .font("Helvetica-Bold")
                 .text("Envío", marginlefttext1, secondLine + lineHeight )
                 .text("N° del pedido:", marginlefttext1, secondLine + lineHeight * 2.5)
@@ -565,12 +551,12 @@ export class PrintLabelsService {
                 .text("N° de Guia:", marginlefttext1 + 142, secondLine + lineHeight * 2.5)
                 .font("Helvetica")
                 .text(data[i].voucher + "", marginlefttext1 + 206, secondLine + lineHeight * 2.5)
-                .image(barCode1, marginlefttext1 + 10, thirdLine + lineHeight , { width: 250})
+                .image(barCode1, marginlefttext1 + 10, thirdLine + lineHeight * 0.7, { width: 250})
                 .font("Helvetica-Bold")
                 .fontSize(14)
                 .text(data[i].city, marginlefttext1 + 70, thirdLine + lineHeight * 6.2)
                 .text(data[i].province, marginlefttext1 + 70, thirdLine + lineHeight * 7.5)
-                .fontSize(10.5)
+                .fontSize(10)
                 .font("Helvetica-Bold")
                 .text("Destinatario:", marginlefttext1, forthLine + lineHeight)
                 .font("Helvetica")
@@ -670,7 +656,7 @@ private generatebarcode10x15(data: string): Promise<Buffer> {
                 .text(data[i].ed, marginlefttext1 + 125, initLine - 10 + lineHeight)
                 .fontSize(14)
                 .text("Pieza: "+ (i+1).toString()  + " / " + pages.toString() , marginlefttext1 + 188, initLine -8 + lineHeight )
-                .fontSize(10.5)
+                .fontSize(10)
                 .text("N° del pedido:", marginlefttext1, initLine + lineHeight * 4.5)
                 .font("Helvetica")
                 .text(data[i].idRequest + "", marginlefttext1 + 72, initLine + lineHeight * 4.5)
@@ -702,7 +688,7 @@ private generatebarcode10x15(data: string): Promise<Buffer> {
                 .font("Helvetica-Bold")
                 .text("Direccion:", marginlefttext1, secondLine + lineHeight * 8.5)
                 .font("Helvetica")
-                .text(this.overflowText(data[i].address, 48), marginlefttext1 + 54, secondLine + lineHeight * 8.5, { width: 250, lineGap: 4 }) // no es adress de destino
+                .text(this.overflowText(data[i].origin, 48), marginlefttext1 + 54, secondLine + lineHeight * 8.5, { width: 250, lineGap: 4 }) // no es adress de destino
                 .font("Helvetica-Bold")
                 .text("Envío", marginlefttext1, thirdLine + lineHeight )
                 .text("N° del pedido:", marginlefttext1, thirdLine + lineHeight * 2.5)
@@ -715,7 +701,7 @@ private generatebarcode10x15(data: string): Promise<Buffer> {
                 .text(data[i].voucher + "", marginlefttext1 + 206, thirdLine + lineHeight * 2.5)
 
 
-                .image(barCode1, marginlefttext1 + 10, forthLine + lineHeight , { width: 250})
+                .image(barCode1, marginlefttext1 + 10, forthLine + lineHeight * 0.4 , { width: 250})
                 .font("Helvetica-Bold")
                 .fontSize(14)
                 .text(data[i].city, marginlefttext1 + 70, forthLine + lineHeight * 6.5)
@@ -723,7 +709,7 @@ private generatebarcode10x15(data: string): Promise<Buffer> {
 
 
                 
-                .fontSize(10.5)
+                .fontSize(10)
                 .font("Helvetica-Bold")
                 .text("Destinatario:", marginlefttext1, fifthLine + lineHeight)
                 .font("Helvetica")

@@ -52,6 +52,7 @@ import NumberFieldTransformer from "./helpers/numeric-field-transformer";
 import fs from 'fs';
 import { CONNREFUSED } from "dns";
 import PlanillaExcelEntity from "./entities/planilla_excel.entity";
+import { Console } from "console";
 
 @Injectable()
 export class ServiceRequestService {
@@ -218,6 +219,12 @@ export class ServiceRequestService {
             delivery: Like(`%${delivery}%`),
           }
         };
+
+        let query = {
+          where: {
+            account: account
+          }
+        };
   
         if (requestId === "") {
           delete myQuery.where.requestId;
@@ -233,11 +240,17 @@ export class ServiceRequestService {
 
         const serviceRequestArray = await this.serviceRequestRepository.find(myQuery);
 
+        // Concatenar los valores para formar la dirección completa
+        const fullAddress = `${account.addressStreet} ${account.addressNumber}, ${account.locality}`;
+
+
+        const filteredArray = serviceRequestArray.filter(element => element.voucher !== null);
+
         // creo un array de piezas por cada solicitud
   
         const LabelResponse: LabelServiceRequestDto[] = [];
   
-        serviceRequestArray.forEach(element => {
+        filteredArray.forEach(element => {
   
           // me fijo en delivery y creo array
   
@@ -261,8 +274,9 @@ export class ServiceRequestService {
             labelReturn.voucher = myElement.voucher;
             labelReturn.status = myElement.status;
             labelReturn.observations = myElement.observations;
-            labelReturn.phone = myElement.phone;
-  
+            labelReturn.phone = myElement.phone; 
+            labelReturn.origin = fullAddress;
+
             LabelResponse.push(labelReturn);
           });
         });
@@ -294,11 +308,11 @@ export class ServiceRequestService {
 
       const serviceRequestArray = await this.serviceRequestRepository.find(myQuery);
 
-      // creo un array de piezas por cada solicitud
+      const filteredArray = serviceRequestArray.filter(element => element.voucher !== null);
 
       const LabelResponse: LabelServiceRequestDto[] = [];
 
-      serviceRequestArray.forEach(element => {
+      filteredArray.forEach(element => {
 
         // me fijo en delivery y creo array
 

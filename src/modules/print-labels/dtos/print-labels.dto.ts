@@ -17,4 +17,5 @@ export class PrintLabelsRequestDTO {
   ed:string;
   voucher:string;
   phone:string;
+  origin:string;
 }

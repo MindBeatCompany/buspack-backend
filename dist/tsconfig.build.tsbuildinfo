@@ -5047,8 +5047,8 @@
         "affectsGlobalScope": false
       },
       "../src/modules/service-request/dtos/label-service-request.dto.ts": {
-        "version": "384b162471c6b960ac189700cf3f695ac97e44515afba0e2877068763f764c1a",
-        "signature": "08a927aea5a11fc2e6de403b1e27857be784cb024ce7e99d1cc39694bbf3f60e",
+        "version": "b7240c5e7300ef50b14be890993d5c684547daa0f841057277bbea967dabdedc",
+        "signature": "3f0f807451d009ccea941068ede336b5015531ef1b382b9eddb0aae5e475ffcb",
         "affectsGlobalScope": false
       },
       "../node_modules/@nestjs/schedule/dist/enums/cron-expression.enum.d.ts": {
@@ -5482,7 +5482,7 @@
         "affectsGlobalScope": false
       },
       "../src/modules/service-request/service-request.service.ts": {
-        "version": "09efbf94e2fb435734869396fd3f59098474efadd74f965abbb3ecf78bba0caf",
+        "version": "662b39192c73abf174441ed21f3c6123e3f2d3b03752abaf968e31ef21510fa9",
         "signature": "1f5ff9fa79fecf2ecb358ef368dc87c7bb787dbe305fdd57193bfdc3c93f737c",
         "affectsGlobalScope": false
       },
@@ -5577,17 +5577,17 @@
         "affectsGlobalScope": false
       },
       "../src/modules/print-labels/domain/print-labels.ts": {
-        "version": "e260f0d7134bca91536efe4eea8221699ef725a1dbff2515b14d76a37985070e",
-        "signature": "b951353fd78fff92430cb910fe784563a297d34559cdf9be36b4f67db2e6edbf",
+        "version": "b245d36730895abb3e5cbf3c38bcf698c50eab7e144efa893912669c16c287f6",
+        "signature": "6ee888adbeb5735c5b905d1ee09266fb7d1654924825c4627558d0a607f23229",
         "affectsGlobalScope": false
       },
       "../src/modules/print-labels/dtos/print-labels.dto.ts": {
-        "version": "90995d50a1ca0afd40fc4d5d6124dd8dcb41e57ae13f7f97a222eaad3976a95d",
-        "signature": "bd47c78d0d5225a8eadefc35c53671ac1904eae5ed2690bf0d58400ba97567d3",
+        "version": "dc4b0634007021c4c67d9fd441bf989b1c7d21f6e2216efe69100cd6524ad7df",
+        "signature": "46b910924354493ac9663b96ea610d7a83eb726e97ea006c62ae6834dd53c691",
         "affectsGlobalScope": false
       },
       "../src/modules/print-labels/mapper/print-labels.mapper.ts": {
-        "version": "9e8b3f737a3fc361b608e70e125ae9cfc23fbaed450c7c2df7287373cfe0981b",
+        "version": "d62624e85f89db373e1925785bbc9bdae5213ae38b3494d68da9eeaf3b23ed45",
         "signature": "455eba2040667213055e73a7a2fdfec3468654bc2bd3ce263c150f3b4f1977e5",
         "affectsGlobalScope": false
       },
@@ -5607,7 +5607,7 @@
         "affectsGlobalScope": false
       },
       "../src/modules/print-labels/print-labels.service.ts": {
-        "version": "e1e9e19cfe67550c5dfe0b36f05f4543d4da0cc15651d0545062bf040f0bbdb5",
+        "version": "d16cd5f67a471ff92218aad7cfd15b9ce9468a6a5f142e7716dc9b564260d548",
         "signature": "e5ed5ae56cb2939847387f49feb0bd4fc4439f6c254fe8e50fa777e449a4cda5",
         "affectsGlobalScope": false
       },
@@ -10612,6 +10612,7 @@
         "../node_modules/@nestjs/common/index.d.ts",
         "../node_modules/@nestjs/schedule/index.d.ts",
         "../node_modules/@nestjs/typeorm/index.d.ts",
+        "../node_modules/@types/node/console.d.ts",
         "../node_modules/@types/node/dns.d.ts",
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/path.d.ts",
