@@ -5,6 +5,7 @@ export declare class PrintLabelsService {
     generatePDFA4(data: PrintLabels[]): Promise<Buffer>;
     private generatebarcode;
     private overflowText;
+    private overflowTextUndefined;
     generatePDF10x10(data: PrintLabels[]): Promise<Buffer>;
     private generatebarcode10x10;
     generatePDF10x15(data: PrintLabels[]): Promise<Buffer>;

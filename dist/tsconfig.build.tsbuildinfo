@@ -5607,8 +5607,8 @@
         "affectsGlobalScope": false
       },
       "../src/modules/print-labels/print-labels.service.ts": {
-        "version": "d16cd5f67a471ff92218aad7cfd15b9ce9468a6a5f142e7716dc9b564260d548",
-        "signature": "e5ed5ae56cb2939847387f49feb0bd4fc4439f6c254fe8e50fa777e449a4cda5",
+        "version": "8ec072f65ba007d3b56e7ac915c410791aff567d35100756aae143ca497f31e1",
+        "signature": "826198fddb6371a37235d8d6d58b9f58a806dc4d80fd600703b418b017c1710d",
         "affectsGlobalScope": false
       },
       "../src/modules/print-labels/print-labels.controller.ts": {

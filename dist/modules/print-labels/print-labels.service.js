@@ -51,7 +51,7 @@ let PrintLabelsService = class PrintLabelsService {
                     .lineTo(340, initLine + lineHeight * 4 - offset)
                     .stroke()
                     .text("Dirección del origen:", marginlefttext1, initLine + lineHeight * 5)
-                    .text(data[i * 2].origin + "", marginlefttext1 + 68, initLine + lineHeight * 8)
+                    .text(this.overflowTextUndefined(data[i * 2].origin) + "", marginlefttext1 + 68, initLine + lineHeight * 5)
                     .moveTo(marginlefttext1 + 100, initLine + lineHeight * 6 - offset)
                     .lineTo(340, initLine + lineHeight * 6 - offset)
                     .stroke()
@@ -59,7 +59,7 @@ let PrintLabelsService = class PrintLabelsService {
                     .lineTo(340, initLine + lineHeight * 7 - offset)
                     .stroke()
                     .text("N° del pedido:", marginlefttext1, initLine + lineHeight * 8)
-                    .text(data[i * 2].idRequest + "", marginlefttext1 + 68, initLine + lineHeight * 8)
+                    .text(this.overflowTextUndefined(data[i * 2].idRequest.toString()) + "", marginlefttext1 + 68, initLine + lineHeight * 8)
                     .text("N° de guia:", marginlefttext1 + 150, initLine + lineHeight * 8)
                     .text(data[i * 2].pieceId + "", marginlefttext1 + 210, initLine + lineHeight * 8)
                     .image(barCode1, marginlefttext1 + 80, initLine + lineHeight * 9, {
@@ -140,7 +140,7 @@ let PrintLabelsService = class PrintLabelsService {
                         .lineTo(680, initLine + lineHeight * 4 - offset)
                         .stroke()
                         .text("Dirección del origen:", marginlefttext2, initLine + lineHeight * 5)
-                        .text(data[i * 2 + 1].origin + "", marginlefttext1 + 68, initLine + lineHeight * 8)
+                        .text(this.overflowTextUndefined(data[i * 2 + 1].origin) + "", marginlefttext1 + 68, initLine + lineHeight * 5)
                         .moveTo(marginlefttext2 + 100, initLine + lineHeight * 6 - offset)
                         .lineTo(680, initLine + lineHeight * 6 - offset)
                         .stroke()
@@ -241,6 +241,14 @@ let PrintLabelsService = class PrintLabelsService {
                 : text;
         }
     }
+    overflowTextUndefined(text) {
+        if (text === undefined) {
+            return "";
+        }
+        else {
+            return text;
+        }
+    }
     async generatePDF10x10(data) {
         console.log("Generating PDF...");
         const pages = data.length;
@@ -300,11 +308,7 @@ let PrintLabelsService = class PrintLabelsService {
                     .font("Helvetica")
                     .font("Helvetica-Bold")
                     .text("Observacion:", marginlefttext1, secondLine + lineHeight * 8.8)
-                    .text(data[i].observations, marginlefttext1 + 65, secondLine + lineHeight * 8.8)
-                    .font("Helvetica")
-                    .font("Helvetica-Bold")
-                    .fontSize(14)
-                    .text("Pieza: " + (i + 1).toString() + " / " + pages.toString(), marginlefttext1 + 188, secondLine + lineHeight * 6.0);
+                    .text(data[i].observations, marginlefttext1 + 65, secondLine + lineHeight * 8.8);
                 if (i !== pages - 1) {
                     doc.addPage();
                 }
@@ -394,11 +398,7 @@ let PrintLabelsService = class PrintLabelsService {
                     .font("Helvetica")
                     .font("Helvetica-Bold")
                     .text("Observacion:", marginlefttext1, forthLine + lineHeight * 7)
-                    .text(data[i].observations, marginlefttext1 + 68, forthLine + lineHeight * 7)
-                    .font("Helvetica")
-                    .font("Helvetica-Bold")
-                    .fontSize(14)
-                    .text("Pieza: " + (i + 1).toString() + " / " + pages.toString(), marginlefttext1 + 188, forthLine + lineHeight * 8.5);
+                    .text(data[i].observations, marginlefttext1 + 68, forthLine + lineHeight * 7);
                 if (i !== pages - 1) {
                     doc.addPage();
                 }
@@ -442,8 +442,6 @@ let PrintLabelsService = class PrintLabelsService {
                     .font("Helvetica-Bold")
                     .fontSize(20)
                     .text(data[i].ed, marginlefttext1 + 125, initLine - 10 + lineHeight)
-                    .fontSize(14)
-                    .text("Pieza: " + (i + 1).toString() + " / " + pages.toString(), marginlefttext1 + 188, initLine - 8 + lineHeight)
                     .fontSize(10)
                     .text("N° del pedido:", marginlefttext1, initLine + lineHeight * 4.5)
                     .font("Helvetica")
@@ -508,13 +506,10 @@ let PrintLabelsService = class PrintLabelsService {
                     .text(data[i].phone, marginlefttext1 + 47, fifthLine + lineHeight * 5.5)
                     .font("Helvetica")
                     .font("Helvetica-Bold")
-                    .fontSize(14)
-                    .text("Pieza: " + (i + 1).toString() + " / " + pages.toString(), marginlefttext1 + 188, fifthLine + lineHeight * 4.5)
                     .fontSize(10.5)
                     .text("Observacion:", marginlefttext1, fifthLine + lineHeight * 7)
-                    .text(data[i].observations, marginlefttext1 + 69, fifthLine + lineHeight * 7)
                     .font("Helvetica")
-                    .font("Helvetica-Bold");
+                    .text(data[i].observations, marginlefttext1 + 69, fifthLine + lineHeight * 7);
                 if (i !== pages - 1) {
                     doc.addPage();
                 }
