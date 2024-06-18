@@ -224,6 +224,7 @@ let ServiceRequestService = class ServiceRequestService {
                 }
                 const serviceRequestArray = await this.serviceRequestRepository.find(myQuery);
                 const filteredArray = serviceRequestArray.filter(element => element.voucher !== null);
+                const fullAddress = `${account.addressStreet} ${account.addressNumber}, ${account.locality}`;
                 const LabelResponse = [];
                 filteredArray.forEach(element => {
                     const myElement = element;
@@ -243,6 +244,7 @@ let ServiceRequestService = class ServiceRequestService {
                         labelReturn.status = myElement.status;
                         labelReturn.observations = myElement.observations;
                         labelReturn.phone = myElement.phone;
+                        labelReturn.origin = fullAddress;
                         LabelResponse.push(labelReturn);
                     });
                 });
