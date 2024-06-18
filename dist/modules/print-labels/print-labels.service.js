@@ -67,6 +67,8 @@ let PrintLabelsService = class PrintLabelsService {
                     .image(barCode1, marginlefttext1 + 80, initLine + lineHeight * 9, {
                     width: 120,
                 })
+                    .fontSize(10)
+                    .text(data[i * 2].pieceId.toString(), marginlefttext1 + 120, initLine + lineHeight * 11.5)
                     .fontSize(18)
                     .text(data[i * 2].city, marginlefttext1 + 16, initLine + lineHeight * 12.5)
                     .text(data[i * 2].province, marginlefttext1 + 16, initLine + lineHeight * 14.5)
@@ -158,6 +160,8 @@ let PrintLabelsService = class PrintLabelsService {
                         .image(barCode2, marginlefttext2 + 66, initLine + lineHeight * 9, {
                         width: 120,
                     })
+                        .fontSize(10)
+                        .text(data[i * 2 + 1].pieceId.toString(), marginlefttext2 + 106, initLine + lineHeight * 11.5)
                         .fontSize(18)
                         .text(data[i * 2 + 1].city, marginlefttext2 + 16, initLine + lineHeight * 12.5)
                         .text(data[i * 2 + 1].province, marginlefttext2 + 16, initLine + lineHeight * 14.5)
@@ -228,10 +232,10 @@ let PrintLabelsService = class PrintLabelsService {
     generatebarcode(data) {
         return bwipjs.toBuffer({
             bcid: "code128",
-            text: data,
+            text: data.replace("-", "/"),
             scale: 3,
             height: 10,
-            includetext: true,
+            includetext: false,
             textxalign: "center",
         });
     }
@@ -288,7 +292,9 @@ let PrintLabelsService = class PrintLabelsService {
                     .text("N° de Guia:", marginlefttext1 + 150, initLine + lineHeight * 4.2)
                     .font("Helvetica")
                     .text(data[i].voucher + "", marginlefttext1 + 210, initLine + lineHeight * 4.2)
-                    .image(barCode1, marginlefttext1 + 20, initLine + lineHeight * 5.8, { width: 220 })
+                    .image(barCode1, marginlefttext1 + 20, initLine + lineHeight * 6.5, { width: 220 })
+                    .fontSize(13)
+                    .text(data[i].pieceId.toString(), marginlefttext1 + 100, initLine + lineHeight * 9.7)
                     .font("Helvetica-Bold")
                     .fontSize(14)
                     .text(data[i].city, marginlefttext1 + 70, initLine + lineHeight * 11)
@@ -327,10 +333,10 @@ let PrintLabelsService = class PrintLabelsService {
     generatebarcode10x10(data) {
         return bwipjs.toBuffer({
             bcid: "code128",
-            text: data,
+            text: data.replace("-", "/"),
             scale: 3,
             height: 6,
-            includetext: true,
+            includetext: false,
             textxalign: "center",
             textsize: 8
         });
@@ -379,6 +385,8 @@ let PrintLabelsService = class PrintLabelsService {
                     .font("Helvetica")
                     .text(data[i].voucher + "", marginlefttext1 + 206, secondLine + lineHeight * 2.5)
                     .image(barCode1, marginlefttext1 + 10, thirdLine + lineHeight * 0.7, { width: 250 })
+                    .fontSize(13)
+                    .text(data[i].pieceId.toString(), marginlefttext1 + 108, thirdLine + lineHeight * 4.26)
                     .font("Helvetica-Bold")
                     .fontSize(14)
                     .text(data[i].city, marginlefttext1 + 70, thirdLine + lineHeight * 6.2)
@@ -417,10 +425,10 @@ let PrintLabelsService = class PrintLabelsService {
     generatebarcode10x15(data) {
         return bwipjs.toBuffer({
             bcid: "code128",
-            text: data,
+            text: data.replace("-", "/"),
             scale: 3,
             height: 6,
-            includetext: true,
+            includetext: false,
             textxalign: "center",
             textsize: 6
         });
@@ -490,6 +498,8 @@ let PrintLabelsService = class PrintLabelsService {
                     .image(barCode1, marginlefttext1 + 10, forthLine + lineHeight * 0.4, { width: 250 })
                     .font("Helvetica-Bold")
                     .fontSize(14)
+                    .text(data[i].pieceId.toString(), marginlefttext1 + 103, forthLine + lineHeight * 4)
+                    .fontSize(14)
                     .text(data[i].city, marginlefttext1 + 70, forthLine + lineHeight * 6.5)
                     .text(data[i].province, marginlefttext1 + 70, forthLine + lineHeight * 8)
                     .fontSize(10)
@@ -528,10 +538,10 @@ let PrintLabelsService = class PrintLabelsService {
     generatebarcode10x20(data) {
         return bwipjs.toBuffer({
             bcid: "code128",
-            text: data,
+            text: data.replace("-", "/"),
             scale: 3,
             height: 6,
-            includetext: true,
+            includetext: false,
             textxalign: "center",
             textsize: 6
         });
