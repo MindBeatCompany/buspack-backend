@@ -310,6 +310,9 @@ export class ServiceRequestService {
 
       const filteredArray = serviceRequestArray.filter(element => element.voucher !== null);
 
+      // Concatenar los valores para formar la dirección completa
+      const fullAddress = `${account.addressStreet} ${account.addressNumber}, ${account.locality}`;
+
       const LabelResponse: LabelServiceRequestDto[] = [];
 
       filteredArray.forEach(element => {
@@ -337,6 +340,7 @@ export class ServiceRequestService {
           labelReturn.status = myElement.status;
           labelReturn.observations = myElement.observations;
           labelReturn.phone = myElement.phone;
+          labelReturn.origin = fullAddress;
 
           LabelResponse.push(labelReturn);
         });
