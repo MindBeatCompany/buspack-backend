@@ -338,7 +338,7 @@ export class PrintLabelsService {
   private generatebarcode(data: string): Promise<Buffer> { // TODO VER como apostrofe (') y no guion (-)  PRINTEA EL STRING 
     return bwipjs.toBuffer({
       bcid: "code128", // Barcode type
-      text: data, // Text to encode
+      text: data.replace("-","/"), // Text to encode
       scale: 3, // 3x scaling factor
       height: 10, // Bar height, in millimeters
       includetext: true, // Show human-readable text
@@ -474,7 +474,7 @@ export class PrintLabelsService {
   private generatebarcode10x10(data: string): Promise<Buffer> {
     return bwipjs.toBuffer({
       bcid: "code128", // Tipo de código de barras
-      text: data, // Texto a codificar
+      text: data.replace("-","/"), // Texto a codificar
       scale: 3, // Factor de escala (aumentado)
       height: 6, // Altura de la barra, en milímetros (aumentado)
       includetext: true, // Mostrar texto legible
@@ -602,7 +602,7 @@ export class PrintLabelsService {
 private generatebarcode10x15(data: string): Promise<Buffer> {
   return bwipjs.toBuffer({
     bcid: "code128", // Tipo de código de barras
-    text: data, // Texto a codificar
+    text: data.replace("-","/"), // Texto a codificar
     scale: 3, // Factor de escala (aumentado)
     height: 6, // Altura de la barra, en milímetros (aumentado)
     includetext: true, // Mostrar texto legible
@@ -756,7 +756,7 @@ private generatebarcode10x15(data: string): Promise<Buffer> {
 private generatebarcode10x20(data: string): Promise<Buffer> {
   return bwipjs.toBuffer({
     bcid: "code128", // Tipo de código de barras
-    text: data, // Texto a codificar
+    text: data.replace("-","/"), // Texto a codificar
     scale: 3, // Factor de escala (aumentado)
     height: 6, // Altura de la barra, en milímetros (aumentado)
     includetext: true, // Mostrar texto legible
