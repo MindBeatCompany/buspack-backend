@@ -6,12 +6,12 @@
   "password": "Guo*yE=n4wgCfn+axUr",
   "database": "backendnest",
   "entities": [
-    "C:\\Users\\JuanUTN\\buspack\\buspack-backend\\dist\\**\\**\\*\\*entity{.ts,.js}"
+    "C:\\Users\\juanc_dx166hr\\buspack\\buspack-backend\\dist\\**\\**\\*\\*entity{.ts,.js}"
   ],
   "autoLoadEntities": false,
   "migrationsRun": false,
   "migrations": [
-    "C:\\Users\\JuanUTN\\buspack\\buspack-backend\\dist\\migration\\**\\*{.ts,.js}"
+    "C:\\Users\\juanc_dx166hr\\buspack\\buspack-backend\\dist\\migration\\**\\*{.ts,.js}"
   ],
   "migrationsTableName": "migrations",
   "cli": {
