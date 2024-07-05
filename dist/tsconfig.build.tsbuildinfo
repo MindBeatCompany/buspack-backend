@@ -5652,12 +5652,12 @@
         "affectsGlobalScope": false
       },
       "../src/modules/enabled-places/associated-zipcode.service.ts": {
-        "version": "d5b65310be87caeabf2d6112acebab6adbe044ae8120f1abf107fb62be26b307",
+        "version": "f9fe1884fdd923b06384367f7870b357e96b37f8edddecae45ed203d32d06266",
         "signature": "0a98f4da793e05f8e36d54e40af26683acc258ec17021ad0cbe4059c883a6492",
         "affectsGlobalScope": false
       },
       "../src/modules/enabled-places/enabled-places.controller.ts": {
-        "version": "87d98f845464560d8b1fb5570263bbb994935b693ed0694fb2b4461513eb552d",
+        "version": "02b04bc9aeefa546b11769a01503e89c782dd6590b679ce8e6d8404983e5d6e6",
         "signature": "845ae641ae01b6694ec95c22890cab36e4be9d13c4f489033db59eded5184545",
         "affectsGlobalScope": false
       },

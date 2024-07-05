@@ -46,7 +46,6 @@ let AssociatedZipcodeService = class AssociatedZipcodeService {
         }
     }
     async getEnabledPlacesLocalActive(fields) {
-        console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         try {
             if (!Array.isArray(fields) || !fields.every(field => typeof field === 'string')) {
                 throw new Error('Invalid fields parameter. It must be an array of strings.');
