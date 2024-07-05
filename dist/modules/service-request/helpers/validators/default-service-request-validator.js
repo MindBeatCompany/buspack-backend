@@ -10,7 +10,7 @@ const common_1 = require("@nestjs/common");
 const service_request_validator_1 = require("./service-request-validator");
 const sr_field_response_1 = require("./sr-field-response");
 let DefaultServiceRequestValidator = class DefaultServiceRequestValidator extends service_request_validator_1.default {
-    async validateRowData(row, dtv, isFileUploading) {
+    validateRowData(row, dtv, isFileUploading) {
         let requestId = this.validateAttributte(row.requestId.toString(), "string");
         let recipientFullname = this.validateAttributte(row.recipientFullname, "string");
         let docType = this.validateAttributte(row.docType, "string");

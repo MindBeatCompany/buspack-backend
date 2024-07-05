@@ -1,6 +1,6 @@
 import ServiceRequestValidator from "./service-request-validator";
 export default class DefaultServiceRequestValidator extends ServiceRequestValidator {
-    protected validateRowData(row: any, dtv: any, isFileUploading: boolean): Promise<{
+    protected validateRowData(row: any, dtv: any, isFileUploading: boolean): {
         requestId: {
             value: any;
             status: string;
@@ -101,7 +101,7 @@ export default class DefaultServiceRequestValidator extends ServiceRequestValida
             status: string;
             error: string;
         };
-    }>;
+    };
     private validateDocNumber;
     private validateHomeDelivery;
     validateAttributte(value: any, type: string, empty?: boolean): {

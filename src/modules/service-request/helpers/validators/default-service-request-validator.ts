@@ -7,7 +7,7 @@ import { srFieldResponse } from "./sr-field-response";
 @Injectable()
 export default class DefaultServiceRequestValidator extends ServiceRequestValidator {
 
-    protected async validateRowData(row: any, dtv: any, isFileUploading: boolean) {
+    protected validateRowData(row: any, dtv: any, isFileUploading: boolean) {
         let requestId = this.validateAttributte(row.requestId.toString(), "string");
 
         // Recipient
