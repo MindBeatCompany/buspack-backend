@@ -5607,7 +5607,7 @@
         "affectsGlobalScope": false
       },
       "../src/modules/print-labels/print-labels.service.ts": {
-        "version": "1a78468fb3804549b70e0d8749ecc63e5e3801965ff43da1184145e6d8cf08f3",
+        "version": "3db97a836893f02b837b38f1bc6dc86b21b1a603b5ad74ef6bd93eee2eb023ad",
         "signature": "826198fddb6371a37235d8d6d58b9f58a806dc4d80fd600703b418b017c1710d",
         "affectsGlobalScope": false
       },
@@ -5652,12 +5652,12 @@
         "affectsGlobalScope": false
       },
       "../src/modules/enabled-places/associated-zipcode.service.ts": {
-        "version": "1a7acae114df930a3d9391ad85e38ec8075d5743b41a8f24329c6972f44f5400",
-        "signature": "5cca19c78f7f4d8056ac4d17c3e8c85b7bf8ab57c2e07ad93c648f5c8bed2641",
+        "version": "d5b65310be87caeabf2d6112acebab6adbe044ae8120f1abf107fb62be26b307",
+        "signature": "0a98f4da793e05f8e36d54e40af26683acc258ec17021ad0cbe4059c883a6492",
         "affectsGlobalScope": false
       },
       "../src/modules/enabled-places/enabled-places.controller.ts": {
-        "version": "ad1d6a98e08dbe03ccf6b66d8dd188c8fb88a79b7599b9188997fedf9638d4fe",
+        "version": "87d98f845464560d8b1fb5570263bbb994935b693ed0694fb2b4461513eb552d",
         "signature": "845ae641ae01b6694ec95c22890cab36e4be9d13c4f489033db59eded5184545",
         "affectsGlobalScope": false
       },
@@ -10096,6 +10096,7 @@
         "../node_modules/@nestjs/typeorm/index.d.ts",
         "../node_modules/typeorm/index.d.ts",
         "../src/modules/enabled-places/entities/associated-zipcode.entity.ts",
+        "../src/modules/enabled-places/entities/enabled-places.entity.ts",
         "../src/modules/enabled-places/entities/location.entity.ts",
         "../src/shared/config/strings-constants.ts"
       ],
@@ -14689,6 +14690,7 @@
       ],
       "../src/modules/enabled-places/associated-zipcode.service.ts": [
         "../node_modules/typeorm/index.d.ts",
+        "../src/modules/enabled-places/entities/enabled-places.entity.ts",
         "../src/modules/enabled-places/entities/location.entity.ts"
       ],
       "../src/modules/enabled-places/enabled-places.controller.ts": [

@@ -51,7 +51,7 @@ export class EnabledPlacesController {
   })
   async getEnabledPlacesLocal(@Res() res: any): Promise<void> {
     return this.associatedZipCodeSevice
-      .getEnabledPlacesLocal(["enabled_place", "locality_name","province_name","zip_code"])
+      .getEnabledPlacesLocalActive(["enabled_place", "locality_name","province_name","zip_code"])
       .then((result) => {
         res.status(HttpStatus.OK).json({
           status: HttpStatus.OK,
