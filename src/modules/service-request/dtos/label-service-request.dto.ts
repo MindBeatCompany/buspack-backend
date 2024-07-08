@@ -32,4 +32,13 @@ export class LabelServiceRequestDto {
   @IsString()
   status: string;
 
+  @IsString()
+  phone: string;
+
+  @IsString()
+  observations: string;
+
+  @IsString()
+  origin: string;
+
 }

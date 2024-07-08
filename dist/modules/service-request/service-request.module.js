@@ -31,14 +31,17 @@ const format_service_request_validator_1 = require("./helpers/validators/format-
 const default_enabled_place_finder_1 = require("./helpers/enabled-place-finder/default-enabled-place-finder");
 const format_separator_validator_1 = require("./helpers/validators/format-separator-validator");
 const update_fsr_validator_1 = require("./helpers/validators/update-fsr-validator");
+const enabled_places_service_1 = require("../enabled-places/enabled-places.service");
+const config_1 = require("@nestjs/config");
+const provider_constant_1 = require("../../shared/config/provider.constant");
 const planilla_excel_entity_1 = require("./entities/planilla_excel.entity");
 let ServiceRequestModule = class ServiceRequestModule {
 };
 ServiceRequestModule = __decorate([
     common_1.Module({
-        imports: [services_sait_module_1.ServicesSaitModule,
+        imports: [common_1.HttpModule,
+            services_sait_module_1.ServicesSaitModule,
             typeorm_1.TypeOrmModule.forFeature([account_entity_1.AccountEntity,
-                planilla_excel_entity_1.default,
                 service_request_entity_1.ServiceRequestEntity,
                 tariff_entity_1.TariffEntity,
                 zonescp_entity_1.ZonesEntity,
@@ -50,17 +53,29 @@ ServiceRequestModule = __decorate([
                 field_boolean_sr_entity_1.default,
                 field_string_sr_entity_1.default,
                 account_locality_entity_1.default,
+                planilla_excel_entity_1.default,
             ])
         ],
         controllers: [service_request_controller_1.ServiceRequestController],
-        providers: [service_request_service_1.ServiceRequestService,
+        providers: [enabled_places_service_1.EnabledPlacesService,
+            service_request_service_1.ServiceRequestService,
             header_getter_1.default,
             format_enabled_place_finder_1.default,
             default_enabled_place_finder_1.default,
             default_service_request_validator_1.default,
             format_service_request_validator_1.default,
             format_separator_validator_1.default,
-            update_fsr_validator_1.default]
+            update_fsr_validator_1.default,
+            planilla_excel_entity_1.default, {
+                provide: provider_constant_1.ProviderConstant.SAIT_BASE_URL,
+                inject: [config_1.ConfigService],
+                useFactory: (configService) => configService.get(provider_constant_1.ProviderConstant.SAIT_BASE_URL),
+            },
+            {
+                provide: provider_constant_1.ProviderConstant.SAIT_TOKEN_API,
+                inject: [config_1.ConfigService],
+                useFactory: (configService) => configService.get(provider_constant_1.ProviderConstant.SAIT_TOKEN_API),
+            },]
     })
 ], ServiceRequestModule);
 exports.ServiceRequestModule = ServiceRequestModule;

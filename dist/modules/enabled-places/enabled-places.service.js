@@ -52,6 +52,24 @@ let EnabledPlacesService = class EnabledPlacesService {
             throw new Error(strings_constants_1.default.enabledPlace);
         });
     }
+    async getEnabledPlacesSaitForValidator() {
+        try {
+            let token = await this.serviceSaitService.saitAccessToken();
+            const data = await this.http
+                .get(`${this.saitBaseUrl}${this.enabledPlacesURL}${token.token}`)
+                .toPromise();
+            if (data.status === 201 && Array.isArray(data.data.registros)) {
+                return data.data.registros.map((location) => this.mapperOut(location));
+            }
+            else {
+                return [];
+            }
+        }
+        catch (error) {
+            console.error(error);
+            throw new Error(strings_constants_1.default.enabledPlace);
+        }
+    }
     async save(locations) {
         await this.enabledPlaceRepository.clear();
         for (let index = 0; index < locations.length; index++) {

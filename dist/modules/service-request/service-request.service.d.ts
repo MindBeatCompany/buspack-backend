@@ -50,7 +50,7 @@ export declare class ServiceRequestService {
     getAll(): Promise<ServiceRequestEntity[]>;
     updateRequests(): Promise<void>;
     updateRequestsBetweenDates(fromDate: string, toDate: string, account: AccountEntity): Promise<void>;
-    getByRequestIdVoucherAndDelivery(requestId: string, voucher: string, delivery: string, account: AccountEntity): Promise<LabelServiceRequestDto[]>;
+    getByRequestIdVoucherAndDelivery(requestId: string, voucher: string, delivery: string, account: AccountEntity, dateFrom: string, dateTo: string): Promise<LabelServiceRequestDto[]>;
     getByQuery(requestId: string, voucher: string, delivery: string, fromDate: string, toDate: string, account: AccountEntity): Promise<QueryServiceRequestDto[]>;
     uploadFile(file: any, account: AccountEntity, isStandardFormat: boolean): Promise<any>;
     private validateTotalWeightAndQtyPiecesOnTariff;

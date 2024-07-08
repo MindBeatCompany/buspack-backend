@@ -52,6 +52,7 @@ import NumberFieldTransformer from "./helpers/numeric-field-transformer";
 import fs from 'fs';
 import { CONNREFUSED } from "dns";
 import PlanillaExcelEntity from "./entities/planilla_excel.entity";
+import { Console } from "console";
 
 @Injectable()
 export class ServiceRequestService {
@@ -195,14 +196,100 @@ export class ServiceRequestService {
     }
   }
 
-  public async getByRequestIdVoucherAndDelivery(requestId: string, voucher: string, delivery: string, account: AccountEntity) {
+  public async getByRequestIdVoucherAndDelivery(requestId: string, voucher: string, delivery: string, account: AccountEntity, dateFrom: string, dateTo: string) {
 
     try {
+
+      if( dateFrom !="" && dateTo != ""){
+
+        const dateStringFrom =  dateFrom;
+        const dateObjectFrom = new Date(dateStringFrom);
+        dateObjectFrom.setHours(0, 0, 0, 0);
+    
+        let dateStringToDate =  dateTo;
+        const dateObjectToDate = new Date(dateStringToDate);
+        dateObjectToDate.setHours(23, 0, 0, 0);
+
+        let myQuery = {
+          where: {
+            account: account,
+            requestId: requestId,
+            voucher: voucher,
+            createdAt : Between(dateObjectFrom, dateObjectToDate),
+            delivery: Like(`%${delivery}%`),
+          }
+        };
+
+        let query = {
+          where: {
+            account: account
+          }
+        };
+  
+        if (requestId === "") {
+          delete myQuery.where.requestId;
+        }
+  
+        if (voucher === "") {
+          delete myQuery.where.voucher;
+        }
+  
+        if (delivery === "") {
+          delete myQuery.where.delivery;
+        }
+
+        const serviceRequestArray = await this.serviceRequestRepository.find(myQuery);
+
+        // Concatenar los valores para formar la dirección completa
+        const fullAddress = `${account.addressStreet} ${account.addressNumber}, ${account.locality}`;
+
+
+        const filteredArray = serviceRequestArray.filter(element => element.voucher !== null);
+
+        // creo un array de piezas por cada solicitud
+  
+        const LabelResponse: LabelServiceRequestDto[] = [];
+  
+        filteredArray.forEach(element => {
+  
+          // me fijo en delivery y creo array
+  
+          const myElement = element;
+  
+          const delivery = element.delivery;
+          const deliveryArray = delivery.split(";");
+  
+          deliveryArray.forEach(piece => {
+  
+            let labelReturn = new LabelServiceRequestDto();
+  
+            labelReturn.pieceId = piece;
+            labelReturn.recipientFullname = myElement.recipientFullname;
+            labelReturn.address = myElement.addressStreet + " " + (myElement.addressNumber == null ? "" : myElement.addressNumber) + " " + (myElement.addressBuilding == null ? "" : myElement.addressBuilding) + " " + (myElement.addressFloor == null ? "" : myElement.addressFloor) + " " + (myElement.addressApartment == null ? "" : myElement.addressApartment);
+            labelReturn.cpa = myElement.cpa;
+            labelReturn.city = myElement.locality;
+            labelReturn.province = myElement.province;
+            labelReturn.requestId = myElement.requestId;
+            labelReturn.shipping = myElement.homeDelivery ? "Entrega en domicilio" : "Entrega en sucursal",
+            labelReturn.voucher = myElement.voucher;
+            labelReturn.status = myElement.status;
+            labelReturn.observations = myElement.observations;
+            labelReturn.phone = myElement.phone; 
+            labelReturn.origin = fullAddress;
+
+            LabelResponse.push(labelReturn);
+          });
+        });
+        return LabelResponse;
+
+      }else{
+            
       let myQuery = {
         where: {
           account: account,
           requestId: requestId,
           voucher: voucher,
+
           delivery: Like(`%${delivery}%`),
         }
       };
@@ -221,11 +308,14 @@ export class ServiceRequestService {
 
       const serviceRequestArray = await this.serviceRequestRepository.find(myQuery);
 
-      // creo un array de piezas por cada solicitud
+      const filteredArray = serviceRequestArray.filter(element => element.voucher !== null);
+
+      // Concatenar los valores para formar la dirección completa
+      const fullAddress = `${account.addressStreet} ${account.addressNumber}, ${account.locality}`;
 
       const LabelResponse: LabelServiceRequestDto[] = [];
 
-      serviceRequestArray.forEach(element => {
+      filteredArray.forEach(element => {
 
         // me fijo en delivery y creo array
 
@@ -246,17 +336,25 @@ export class ServiceRequestService {
           labelReturn.province = myElement.province;
           labelReturn.requestId = myElement.requestId;
           labelReturn.shipping = myElement.homeDelivery ? "Entrega en domicilio" : "Entrega en sucursal",
-            labelReturn.voucher = myElement.voucher;
+          labelReturn.voucher = myElement.voucher;
           labelReturn.status = myElement.status;
+          labelReturn.observations = myElement.observations;
+          labelReturn.phone = myElement.phone;
+          labelReturn.origin = fullAddress;
 
           LabelResponse.push(labelReturn);
         });
       });
       return LabelResponse;
+
+    }
+
+
     } catch (error) {
       throw new Error(error);
     }
   }
+
 
   public async getByQuery(requestId: string, voucher: string, delivery: string, fromDate: string, toDate: string, account: AccountEntity) {
 

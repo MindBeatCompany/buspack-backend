@@ -23,6 +23,10 @@ let PrintLabelsMapper = class PrintLabelsMapper {
             city: printLabels.city,
             province: printLabels.province,
             ed: printLabels.ed,
+            voucher: printLabels.voucher,
+            phone: printLabels.phone,
+            observations: printLabels.observations,
+            origin: printLabels.origin,
         };
     }
 };

@@ -1,4 +1,4 @@
-import { Module } from "@nestjs/common";
+import { HttpModule, Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { ServiceRequestController } from "./service-request.controller";
 import { ServiceRequestService } from "./service-request.service";
@@ -22,14 +22,15 @@ import FormatServiceRequestValidator from "./helpers/validators/format-service-r
 import DefaultEnabledPlaceFinder from "./helpers/enabled-place-finder/default-enabled-place-finder";
 import FormatSeparatorValidator from "./helpers/validators/format-separator-validator";
 import UpdateFsrValidator from "./helpers/validators/update-fsr-validator";
+import { EnabledPlacesService } from "../enabled-places/enabled-places.service";
+import { ConfigService } from "@nestjs/config";
+import { ProviderConstant } from "src/shared/config/provider.constant";
 import PlanillaExcelEntity from "./entities/planilla_excel.entity";
-
-
 @Module({
-  imports: [ServicesSaitModule, 
+  imports: [HttpModule,
+            ServicesSaitModule,
             TypeOrmModule.forFeature(
               [AccountEntity,
-               PlanillaExcelEntity,
                ServiceRequestEntity,
                TariffEntity,
                ZonesEntity,
@@ -41,16 +42,31 @@ import PlanillaExcelEntity from "./entities/planilla_excel.entity";
                FieldBooleanEntity,
                FieldStringEntity,
                AccountLocalityEntity,
+               PlanillaExcelEntity,
               ])
            ],
   controllers: [ServiceRequestController],
-  providers: [ServiceRequestService,
+  providers: [EnabledPlacesService,
+              ServiceRequestService,
               HeaderGetter,
               FormatEnabledPlaceFinder,
               DefaultEnabledPlaceFinder,
               DefaultServiceRequestValidator,
               FormatServiceRequestValidator,
               FormatSeparatorValidator,
-              UpdateFsrValidator]
+              UpdateFsrValidator,
+              PlanillaExcelEntity,
+              {
+                provide: ProviderConstant.SAIT_BASE_URL,
+                inject: [ConfigService],
+                useFactory: (configService: ConfigService) =>
+                  configService.get<string>(ProviderConstant.SAIT_BASE_URL),
+              },
+              {
+                provide: ProviderConstant.SAIT_TOKEN_API,
+                inject: [ConfigService],
+                useFactory: (configService: ConfigService) =>
+                  configService.get<string>(ProviderConstant.SAIT_TOKEN_API),
+              },]
 })
 export class ServiceRequestModule {}
