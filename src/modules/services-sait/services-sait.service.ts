@@ -227,7 +227,10 @@ export class ServicesSaitService {
     }
 
     public async mapSaitStatus(data){
-        // console.log("SAIT: ", data.estados);
+        console.log("Sait estado")
+        console.log("estado: ", data.estados);
+        console.log("Sait code estado:")
+        console.log("codeEstadi: ", data.estadodelivery.codestado);
         data.estadodelivery.estado = await this.getBuspackStatusByAlphanumeric(data.estadodelivery.codestado);
         let addedStatus = [];
         let uniqueStatus = [];
