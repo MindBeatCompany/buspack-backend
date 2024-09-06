@@ -1074,6 +1074,7 @@ export class ServiceRequestService {
     console.log("SAIT token: ", token);
     const upload: SaitResponseUploadInterface = await this.serviceSaitService.saitFileUpload(myFilepath, token);
     console.log("SAIT Upload (idarchivo): " + upload.idarchivo);
+    console.log("SAIT Upload (link): " + upload.link);
 
     if (upload.estado === 1) {
       console.log("SAIT Upload OK!");
