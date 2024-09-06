@@ -1080,6 +1080,7 @@ export class ServiceRequestService {
       // guardar idarchivo y link 
       let myids = helper.map(a => a.id);
       await this.saveAllData(myids, { "idfile": upload.idarchivo, "link": upload.link });
+      console.log("All Data was saved");
       let validate: SaitResponseValidateInterface = await this.serviceSaitService.saitValidate(upload.idarchivo, token);
       if (validate.valido) {
         console.log("SAIT Validate OK!");
