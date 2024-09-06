@@ -87,7 +87,7 @@ export class ServiceRequestEntity {
   @Column({ name: "idfile", type: "varchar", length: 200, nullable: true })
   idfile: string;
 
-  @Column({ name: "link", type: "varchar", length: 350, nullable: true })
+  @Column({ name: "link", type: "varchar", length: 255, nullable: true })
   link: string;
 
   @Column({ name: "voucher", type: "varchar", length: 30, nullable: true })
