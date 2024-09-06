@@ -217,6 +217,8 @@ export class ServicesSaitService {
             this._urlSait + SaitUrlEnum.DELIVERY_STATUS+`?numero=${numero}`,
             {headers: config} )
             .then(async value => {
+                console.log("imprimo solo el value q retorna")
+                console.log(value)
                 console.log("Imprimo lo que sair devuelve:")
                 console.log(value.data) 
                 return await this.mapSaitStatus(value.data);
