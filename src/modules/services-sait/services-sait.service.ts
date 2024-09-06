@@ -216,7 +216,9 @@ export class ServicesSaitService {
         return await  _ax.get(
             this._urlSait + SaitUrlEnum.DELIVERY_STATUS+`?numero=${numero}`,
             {headers: config} )
-            .then(async value => { 
+            .then(async value => {
+                console.log("Imprimo lo que sair devuelve:")
+                console.log(value.data) 
                 return await this.mapSaitStatus(value.data);
             }).catch(reason => {
                 console.log(reason)
