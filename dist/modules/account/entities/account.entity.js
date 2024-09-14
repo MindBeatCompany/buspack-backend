@@ -63,7 +63,7 @@ let AccountEntity = class AccountEntity {
             (curr.validSince <= today && prev.validSince > today);
     }
     static _OPENAPI_METADATA_FACTORY() {
-        return { id: { required: true, type: () => Number }, companyName: { required: true, type: () => String }, idClientEntity: { required: true, type: () => Number }, idClientAgent: { required: true, type: () => Number }, cuit: { required: true, type: () => String }, codeECO: { required: true, type: () => String }, addressStreet: { required: true, type: () => String }, addressNumber: { required: true, type: () => String }, addressBuilding: { required: true, type: () => String }, addressFloor: { required: true, type: () => String }, addressApartment: { required: true, type: () => String }, locality: { required: true, type: () => String }, province: { required: true, type: () => String }, country: { required: true, type: () => String }, isActive: { required: true, type: () => Boolean }, accountType: { required: true, type: () => String }, users: { required: true, type: () => [require("../../user/entities/user.entity").UserEntity] }, filePath: { required: true, type: () => String }, tariff: { required: true, type: () => [require("../../user/entities/tariff.entity").TariffEntity] }, serviceRequest: { required: true, type: () => [require("../../service-request/entities/service-request.entity").ServiceRequestEntity] }, pricings: { required: true, type: () => [require("../../pricing/entities/pricing.entity").PricingEntity] }, hasCustomPricing: { required: true, type: () => Boolean } };
+        return { id: { required: true, type: () => Number }, companyName: { required: true, type: () => String }, idClientEntity: { required: true, type: () => Number }, idClientAgent: { required: true, type: () => Number }, cuit: { required: true, type: () => String }, codeECO: { required: true, type: () => String }, addressStreet: { required: true, type: () => String }, addressNumber: { required: true, type: () => String }, addressBuilding: { required: true, type: () => String }, addressFloor: { required: true, type: () => String }, addressApartment: { required: true, type: () => String }, locality: { required: true, type: () => String }, province: { required: true, type: () => String }, country: { required: true, type: () => String }, isActive: { required: true, type: () => Boolean }, accountType: { required: true, type: () => String }, users: { required: true, type: () => [require("../../user/entities/user.entity").UserEntity] }, filePath: { required: true, type: () => String }, tariff: { required: true, type: () => [require("../../user/entities/tariff.entity").TariffEntity] }, serviceRequest: { required: true, type: () => [require("../../service-request/entities/service-request.entity").ServiceRequestEntity] }, pricings: { required: true, type: () => [require("../../pricing/entities/pricing.entity").PricingEntity] }, hasCustomPricing: { required: true, type: () => Boolean }, tariffType: { required: true, type: () => String } };
     }
 };
 __decorate([
@@ -154,6 +154,10 @@ __decorate([
     typeorm_1.Column({ name: "has_custom_pricing", default: false }),
     __metadata("design:type", Boolean)
 ], AccountEntity.prototype, "hasCustomPricing", void 0);
+__decorate([
+    typeorm_1.Column({ name: "tariff_type", type: "varchar", length: 30 }),
+    __metadata("design:type", String)
+], AccountEntity.prototype, "tariffType", void 0);
 AccountEntity = __decorate([
     typeorm_1.Entity("accounts")
 ], AccountEntity);

@@ -226,6 +226,7 @@ let UserService = class UserService {
                             codeECO: users.codeEco,
                             accountType: users.accountType,
                             filePath: file.filename,
+                            tariffType: users.tariffType
                         });
                         return await transaction.save(newAccount);
                     }
@@ -603,6 +604,7 @@ let UserService = class UserService {
         dto.accountType = jsonBody.accountType;
         dto.codeEco = jsonBody.codeEco;
         dto.users = jsonBody.users;
+        dto.tariffType = jsonBody.tariffType;
         await class_validator_1.validate(dto).then((error) => {
             if (error.length > 0) {
                 console.log("error:", error);

@@ -51,6 +51,9 @@ export class CreateMultiUserDto {
   codeEco: string;
 
   @IsString()
+  tariffType: string;
+
+  @IsString()
   @IsOptional()
   filePath:string;
     

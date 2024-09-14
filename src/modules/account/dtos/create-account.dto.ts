@@ -59,4 +59,7 @@ export class CreateAccountDto {
   @IsOptional()
   @IsString()
   cuil: string;
+
+  @IsString()
+  tariffType: string;
 }

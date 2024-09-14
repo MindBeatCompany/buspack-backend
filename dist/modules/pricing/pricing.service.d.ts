@@ -37,6 +37,7 @@ export declare class PricingService {
             tariff: import("../user/entities").TariffEntity[];
             serviceRequest: import("../service-request/entities/service-request.entity").ServiceRequestEntity[];
             hasCustomPricing: boolean;
+            tariffType: string;
         };
         id: number;
         name: string;

@@ -98,6 +98,24 @@ let AccountController = class AccountController {
             });
         });
     }
+    async updateTarrifType(res, id, body) {
+        return await this.accountService
+            .updateTariffType(parseInt(id), body)
+            .then(async (result) => {
+            return await res.status(common_1.HttpStatus.OK).json({
+                status: common_1.HttpStatus.OK,
+                success: true,
+                data: result,
+            });
+        })
+            .catch(async (error) => {
+            return await res.status(common_1.HttpStatus.OK).json({
+                status: common_1.HttpStatus.OK,
+                success: true,
+                data: return_messages_1.default(error.message),
+            });
+        });
+    }
     async changeHasCustomPricing(res, id, body) {
         return await this.accountService
             .changeHasCustomPricing(parseInt(id), body.hasCustom)
@@ -165,6 +183,18 @@ __decorate([
     __metadata("design:paramtypes", [Object, String, dtos_1.UpdateAccountDto]),
     __metadata("design:returntype", Promise)
 ], AccountController.prototype, "update", null);
+__decorate([
+    swagger_1.ApiOperation({ summary: "Update tarrif type" }),
+    common_1.Put("/tarrifType/:id"),
+    auth_decorator_1.default({ possession: "any", action: "update", resource: app_roles_1.AppResource.ACCOUNT }),
+    openapi.ApiResponse({ status: 200, type: require("./dtos/account-typetariff.dto").AccountTypeTariffDto }),
+    __param(0, common_1.Res()),
+    __param(1, common_1.Param("id")),
+    __param(2, common_1.Body()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String, dtos_1.AccountTypeTariffDto]),
+    __metadata("design:returntype", Promise)
+], AccountController.prototype, "updateTarrifType", null);
 __decorate([
     swagger_1.ApiOperation({ summary: "Modify an account has a custom pricing field" }),
     swagger_1.ApiParam({

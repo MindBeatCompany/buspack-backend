@@ -9,6 +9,7 @@ import {
   AccountCreatedDto,
   DeactivateAccountDto,
   UpdateAccountDto,
+  AccountTypeTariffDto,
 } from "./dtos";
 import { AccountEntity } from "./entities/account.entity";
 
@@ -53,6 +54,18 @@ export class AccountService implements CrudOperations {
     const updatedAccount = this.accountRepository.merge(accountFound, newValue);
     return await this.accountRepository.save(updatedAccount);
   }
+
+  public async updateTariffType(
+    id: number,
+    newValue: AccountTypeTariffDto
+  ): Promise<AccountTypeTariffDto> {
+    const accountFound = await this.accountRepository.findOne({ id });
+    if (!accountFound) throw new Error(messages.noAccount);
+    const updatedAccount = this.accountRepository.merge(accountFound, newValue);
+    return await this.accountRepository.save(updatedAccount);
+  }
+
+
   public async delete(id: number): Promise<void | Object> {
     throw new Error("Method not implemented.");
   }

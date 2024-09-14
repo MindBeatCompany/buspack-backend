@@ -15,4 +15,5 @@ export declare class CreateAccountDto {
     province: string;
     country: string;
     cuil: string;
+    tariffType: string;
 }

@@ -26,6 +26,7 @@ export declare class AccountEntity {
     serviceRequest: ServiceRequestEntity[];
     pricings: PricingEntity[];
     hasCustomPricing: boolean;
+    tariffType: string;
     validatePricing(name: string, validSince: Date): void;
     updateCurrentPrices(updatePricesRequest: UpdatePricesDto): PricingEntity;
     currentPricing(): PricingEntity;

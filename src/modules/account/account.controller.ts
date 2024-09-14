@@ -17,6 +17,7 @@ import {
   AccountCreatedDto,
   DeactivateAccountDto,
   UpdateAccountDto,
+  AccountTypeTariffDto,
 } from "./dtos";
 import { ChangeHasCustomPricingFieldRequest } from "./dtos/chage-has-custom-pricing-field";
 
@@ -111,6 +112,32 @@ export class AccountController {
   ): Promise<AccountCreatedDto> {
     return await this.accountService
       .update(parseInt(id), body)
+      .then(async (result) => {
+        return await res.status(HttpStatus.OK).json({
+          status: HttpStatus.OK,
+          success: true,
+          data: result,
+        });
+      })
+      .catch(async (error) => {
+        return await res.status(HttpStatus.OK).json({
+          status: HttpStatus.OK,
+          success: true,
+          data: returnMessage(error.message),
+        });
+      });
+  }
+
+  @ApiOperation({ summary: "Update tarrif type" })
+  @Put("/tarrifType/:id")
+  @Auth({ possession: "any", action: "update", resource: AppResource.ACCOUNT })
+  public async updateTarrifType(
+    @Res() res: any,
+    @Param("id") id: string,
+    @Body() body: AccountTypeTariffDto
+  ): Promise<AccountTypeTariffDto> {
+    return await this.accountService
+      .updateTariffType(parseInt(id), body)
       .then(async (result) => {
         return await res.status(HttpStatus.OK).json({
           status: HttpStatus.OK,

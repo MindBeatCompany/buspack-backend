@@ -114,11 +114,11 @@ __decorate([
     __metadata("design:type", String)
 ], ServiceRequestEntity.prototype, "observations", void 0);
 __decorate([
-    typeorm_1.Column({ name: "idfile", type: "varchar", length: 50, nullable: true }),
+    typeorm_1.Column({ name: "idfile", type: "varchar", length: 200, nullable: true }),
     __metadata("design:type", String)
 ], ServiceRequestEntity.prototype, "idfile", void 0);
 __decorate([
-    typeorm_1.Column({ name: "link", type: "varchar", length: 100, nullable: true }),
+    typeorm_1.Column({ name: "link", type: "varchar", length: 255, nullable: true }),
     __metadata("design:type", String)
 ], ServiceRequestEntity.prototype, "link", void 0);
 __decorate([

@@ -14,7 +14,7 @@ const openapi = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
 class CreateAccountDto {
     static _OPENAPI_METADATA_FACTORY() {
-        return { companyName: { required: true, type: () => String }, codeECO: { required: true, type: () => String }, accountType: { required: true, type: () => String }, isActive: { required: true, type: () => Boolean }, filePath: { required: true, type: () => String }, idClientEntity: { required: true, type: () => String }, idClientAgent: { required: true, type: () => String }, addressStreet: { required: true, type: () => String }, addressNumber: { required: true, type: () => String }, addressFloor: { required: true, type: () => String }, addressApartment: { required: true, type: () => String }, addressBuilding: { required: true, type: () => String }, locality: { required: true, type: () => String }, province: { required: true, type: () => String }, country: { required: true, type: () => String }, cuil: { required: true, type: () => String } };
+        return { companyName: { required: true, type: () => String }, codeECO: { required: true, type: () => String }, accountType: { required: true, type: () => String }, isActive: { required: true, type: () => Boolean }, filePath: { required: true, type: () => String }, idClientEntity: { required: true, type: () => String }, idClientAgent: { required: true, type: () => String }, addressStreet: { required: true, type: () => String }, addressNumber: { required: true, type: () => String }, addressFloor: { required: true, type: () => String }, addressApartment: { required: true, type: () => String }, addressBuilding: { required: true, type: () => String }, locality: { required: true, type: () => String }, province: { required: true, type: () => String }, country: { required: true, type: () => String }, cuil: { required: true, type: () => String }, tariffType: { required: true, type: () => String } };
     }
 }
 __decorate([
@@ -92,5 +92,9 @@ __decorate([
     class_validator_1.IsString(),
     __metadata("design:type", String)
 ], CreateAccountDto.prototype, "cuil", void 0);
+__decorate([
+    class_validator_1.IsString(),
+    __metadata("design:type", String)
+], CreateAccountDto.prototype, "tariffType", void 0);
 exports.CreateAccountDto = CreateAccountDto;
 //# sourceMappingURL=create-account.dto.js.map

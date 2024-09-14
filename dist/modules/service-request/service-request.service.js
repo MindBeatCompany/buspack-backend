@@ -728,51 +728,103 @@ let ServiceRequestService = class ServiceRequestService {
                     createRequest.qty = createRequest.qty + 1;
                 }
                 else {
-                    await this.enabledPlaceRepository.find({
-                        where: {
-                            place_name: row.enabledPlace,
-                        },
-                    }).then(async (placeArray) => {
-                        const zona = await this.zonesRepository.findOne({
-                            cp: addressCpa
-                        });
-                        if (placeArray.length == 0) {
-                            console.log("No existe enabled_place: ", addressCpa);
-                        }
-                        myRow.idog_lugar_destino = parseInt(placeArray[0].idog);
-                        myRow.desc_lugar_destino = row.enabledPlace;
-                        await this.tariffRepository.find({
+                    if (accountClient.tariffType == 'BY_PIECE') {
+                        await this.enabledPlaceRepository.find({
                             where: {
-                                account: account,
-                                weightFrom: typeorm_1.LessThanOrEqual(row.totalWeight / row.qtyPieces),
-                                weightTo: typeorm_1.MoreThanOrEqual(row.totalWeight / row.qtyPieces)
+                                place_name: row.enabledPlace,
                             },
-                        }).then(tariffArray => {
-                            const tariff = tariffArray[0];
-                            myRow.valor_declarado = 0;
-                            myRow.id_seguro = generalSettings.idSeguro;
-                            myRow.seguro = tariff.insurance * row.qtyPieces;
-                            myRow.letra_comprobante = generalSettings.letraComprobante;
-                            myRow.boca_comprobante = generalSettings.bocaComprobante;
-                            const tarifa = tariff[zona.zone];
-                            myRow.valor_flete = tarifa * row.qtyPieces;
-                            myRow.valor_com_c_imp = tarifa * row.qtyPieces;
-                            myRow.valor_com_s_imp = this.round((tarifa * row.qtyPieces) / 1.21);
-                            myRow.retiro_a_domicilio = 0;
-                            myRow.idretiro_a_domicilio = generalSettings.idRetiroADomicilio;
-                            myRow.valor_retiro_domicilio = tariff.homeWithdrawal * row.qtyPieces;
-                            if (row.homeDelivery) {
-                                myRow.envio_domicilio = 1;
-                                myRow.valor_entrega_domicilio = tariff.homeDelivery * row.qtyPieces;
+                        }).then(async (placeArray) => {
+                            const zona = await this.zonesRepository.findOne({
+                                cp: addressCpa
+                            });
+                            if (placeArray.length == 0) {
+                                console.log("No existe enabled_place: ", addressCpa);
                             }
-                            else {
-                                myRow.envio_domicilio = 0;
-                                myRow.valor_entrega_domicilio = 0;
-                            }
-                            saitRequest.push(myRow);
-                            createRequest.qty = createRequest.qty + 1;
+                            myRow.idog_lugar_destino = parseInt(placeArray[0].idog);
+                            myRow.desc_lugar_destino = row.enabledPlace;
+                            await this.tariffRepository.find({
+                                where: {
+                                    account: account,
+                                    weightFrom: typeorm_1.LessThanOrEqual(row.totalWeight / row.qtyPieces),
+                                    weightTo: typeorm_1.MoreThanOrEqual(row.totalWeight / row.qtyPieces)
+                                },
+                            }).then(tariffArray => {
+                                const tariff = tariffArray[0];
+                                myRow.valor_declarado = 0;
+                                myRow.id_seguro = generalSettings.idSeguro;
+                                myRow.seguro = tariff.insurance * row.qtyPieces;
+                                myRow.letra_comprobante = generalSettings.letraComprobante;
+                                myRow.boca_comprobante = generalSettings.bocaComprobante;
+                                const tarifa = tariff[zona.zone];
+                                myRow.valor_flete = tarifa * row.qtyPieces;
+                                myRow.valor_com_c_imp = tarifa * row.qtyPieces;
+                                myRow.valor_com_s_imp = this.round((tarifa * row.qtyPieces) / 1.21);
+                                myRow.retiro_a_domicilio = 0;
+                                myRow.idretiro_a_domicilio = generalSettings.idRetiroADomicilio;
+                                myRow.valor_retiro_domicilio = tariff.homeWithdrawal * row.qtyPieces;
+                                if (row.homeDelivery) {
+                                    myRow.envio_domicilio = 1;
+                                    myRow.valor_entrega_domicilio = tariff.homeDelivery * row.qtyPieces;
+                                }
+                                else {
+                                    myRow.envio_domicilio = 0;
+                                    myRow.valor_entrega_domicilio = 0;
+                                }
+                                saitRequest.push(myRow);
+                                createRequest.qty = createRequest.qty + 1;
+                            });
                         });
-                    });
+                    }
+                    else if (accountClient.tariffType == 'BY_SHIPMENT') {
+                        await this.enabledPlaceRepository.find({
+                            where: {
+                                place_name: row.enabledPlace,
+                            },
+                        }).then(async (placeArray) => {
+                            const zona = await this.zonesRepository.findOne({
+                                cp: addressCpa
+                            });
+                            if (placeArray.length == 0) {
+                                console.log("No existe enabled_place: ", addressCpa);
+                            }
+                            myRow.idog_lugar_destino = parseInt(placeArray[0].idog);
+                            myRow.desc_lugar_destino = row.enabledPlace;
+                            await this.tariffRepository.find({
+                                where: {
+                                    account: account,
+                                    weightFrom: typeorm_1.LessThanOrEqual(row.totalWeight),
+                                    weightTo: typeorm_1.MoreThanOrEqual(row.totalWeight)
+                                },
+                            }).then(tariffArray => {
+                                const tariff = tariffArray[0];
+                                myRow.valor_declarado = 0;
+                                myRow.id_seguro = generalSettings.idSeguro;
+                                myRow.seguro = tariff.insurance;
+                                myRow.letra_comprobante = generalSettings.letraComprobante;
+                                myRow.boca_comprobante = generalSettings.bocaComprobante;
+                                const tarifa = tariff[zona.zone];
+                                myRow.valor_flete = tarifa;
+                                myRow.valor_com_c_imp = tarifa;
+                                myRow.valor_com_s_imp = this.round((tarifa) / 1.21);
+                                myRow.retiro_a_domicilio = 0;
+                                myRow.idretiro_a_domicilio = generalSettings.idRetiroADomicilio;
+                                myRow.valor_retiro_domicilio = tariff.homeWithdrawal;
+                                if (row.homeDelivery) {
+                                    myRow.envio_domicilio = 1;
+                                    myRow.valor_entrega_domicilio = tariff.homeDelivery;
+                                }
+                                else {
+                                    myRow.envio_domicilio = 0;
+                                    myRow.valor_entrega_domicilio = 0;
+                                }
+                                saitRequest.push(myRow);
+                                createRequest.qty = createRequest.qty + 1;
+                            });
+                        });
+                    }
+                    else {
+                        throw new Error("The tariffType for the client does not exists");
+                    }
                 }
             }));
             const workbook = xlsx_1.utils.book_new();
@@ -818,10 +870,13 @@ let ServiceRequestService = class ServiceRequestService {
         console.log("SAIT token: ", token);
         const upload = await this.serviceSaitService.saitFileUpload(myFilepath, token);
         console.log("SAIT Upload (idarchivo): " + upload.idarchivo);
+        console.log("SAIT Upload (link): " + upload.link);
         if (upload.estado === 1) {
             console.log("SAIT Upload OK!");
             let myids = helper.map(a => a.id);
+            console.log("Proced to save the data");
             await this.saveAllData(myids, { "idfile": upload.idarchivo, "link": upload.link });
+            console.log("All Data was saved");
             let validate = await this.serviceSaitService.saitValidate(upload.idarchivo, token);
             if (validate.valido) {
                 console.log("SAIT Validate OK!");

@@ -3637,7 +3637,7 @@
         "affectsGlobalScope": false
       },
       "../src/modules/service-request/entities/service-request.entity.ts": {
-        "version": "41c58439e02aaedf424748840e6733034f262ed47fc880b17e8519ad83e70603",
+        "version": "6dd424af845058a9896a92b3228085b1d1901a69a59ff8c121cb8307cd99e309",
         "signature": "6864795254ba35882fbc37041a7cc3d570bc14c948bd54b54930c5fd582f4295",
         "affectsGlobalScope": false
       },
@@ -4312,8 +4312,8 @@
         "affectsGlobalScope": false
       },
       "../src/modules/account/entities/account.entity.ts": {
-        "version": "1048fe3d447e39f534b33b9d9328374ed7082ca50f7fef0a29c622ced7066b25",
-        "signature": "32f9baff3e16e32e9457ac87e31fbcf33f12cd66642f81c8509d4ff1f81b309b",
+        "version": "0547ef07058d757c3e24bac0d65f874d57e447d8c5faf0801d05734b79bdf492",
+        "signature": "4b2ca9d69628f2b47d3cc93e0960d2b0491f681fd3db9df6c766c15a35aa6016",
         "affectsGlobalScope": false
       },
       "../src/modules/appmenu/entities/appmenu.entity.ts": {
@@ -4422,13 +4422,13 @@
         "affectsGlobalScope": false
       },
       "../src/modules/account/dtos/account-created.dto.ts": {
-        "version": "196f1161cdd76212fba3a8cca5dac6bc31649d3d7c9ffab02bc9eff0b11d31ec",
-        "signature": "94dec6471ad60ea5434adb246048895baa3b6a4b6958a8ffaa1823049737b826",
+        "version": "e74c8366a0d0371b58285f10fe7f6d0062d56777f03f89031a89526c979926be",
+        "signature": "b8383e6cc6fcbca684e8da1dad65d74d0ced11278bc888b1093dd732f47245be",
         "affectsGlobalScope": false
       },
       "../src/modules/account/dtos/create-account.dto.ts": {
-        "version": "0b1932d525eb6ed3845808fa9049ecbbc5d84bcedbd6e097d67f42520e0b5fab",
-        "signature": "50011da8dfc4481293cdf75149d7413e9587478dc7b7c35b71c3eeb91f3c12f7",
+        "version": "7f28bf0a9e13be427102967629ee23354285c10f65ea6b73daec0a803b333668",
+        "signature": "30bd6ab2a4800a9478d8d1dc353f435b8bcd644974b29889e05c0d1d7fa3ba8d",
         "affectsGlobalScope": false
       },
       "../src/modules/account/dtos/update-account.dto.ts": {
@@ -4441,9 +4441,14 @@
         "signature": "dac35e52d670820033c96c03d6037c1f0f1f78d93cefc35616ad0d7f7ce777d6",
         "affectsGlobalScope": false
       },
+      "../src/modules/account/dtos/account-typetariff.dto.ts": {
+        "version": "bc41b5d4e9bc701c5b5737dfa0392d7404fd3c7341de16bb5fa6c374b295960c",
+        "signature": "c443f4bd1855be14f27c0484b1887afdc8f0a52a9e38752fc2384e033aa839db",
+        "affectsGlobalScope": false
+      },
       "../src/modules/account/dtos/index.ts": {
-        "version": "32c67bf16e8401b9dfd9878936746f8346648086803b76492cfbf1eca7b5014d",
-        "signature": "32c67bf16e8401b9dfd9878936746f8346648086803b76492cfbf1eca7b5014d",
+        "version": "11174d679e44daeaf0b0f9c40b553d092eec8f35fc9b0505ac1fe276960a1721",
+        "signature": "11174d679e44daeaf0b0f9c40b553d092eec8f35fc9b0505ac1fe276960a1721",
         "affectsGlobalScope": false
       },
       "../src/modules/role/dtos/create-rol.dto.ts": {
@@ -4477,8 +4482,8 @@
         "affectsGlobalScope": false
       },
       "../src/modules/user/dtos/create-multi-user.dto.ts": {
-        "version": "4677075bc61e4e74bc33e2957d55e2e8e82648939fdcb919edf7725c7aae3f0f",
-        "signature": "81f3127822cba33d61a41f542a5e0bf2f25ee9bda144cf35de876434df7fa2d4",
+        "version": "d830ade75d2c05446da881f246d4554846fd9de2c684b6d5079497e8c5676ca4",
+        "signature": "1c37e90e80e5db5df2f791a7a67622ea0ec455b571676b42f50bffcf0f7f35a7",
         "affectsGlobalScope": false
       },
       "../src/modules/user/dtos/pass-reset.dto.ts": {
@@ -4597,7 +4602,7 @@
         "affectsGlobalScope": false
       },
       "../src/modules/user/user.service.ts": {
-        "version": "bff4a891483fc18e28b2361d9f5f411b4c30d948774c9551a2bf7af88628be02",
+        "version": "95358f2cf388b860524a8f1ffe622f348d72b9f6c10eb724bbad5d0bb07881d5",
         "signature": "088b1e6b024381466c1c5e848260bc8765fcb471c46d3f13714f3dc078cd3c46",
         "affectsGlobalScope": false
       },
@@ -4642,8 +4647,8 @@
         "affectsGlobalScope": false
       },
       "../src/modules/account/account.service.ts": {
-        "version": "45a6e0fcd40973b3c945e841866f4c059b8c531d35093ad51d1e6deda1c5aa57",
-        "signature": "e3b424827831fe0cc02479e40e18dd02b8736c3d976bb6f078fd1191979fd5b8",
+        "version": "5e81cac49862818e0125edb6e46c2e052037d70c05258599b9dc845990b34938",
+        "signature": "5818022e24943fd0ac829ec3fb3712e7a7e30970f0b6060011ebc561c7f2ce81",
         "affectsGlobalScope": false
       },
       "../src/modules/auth/auth.service.ts": {
@@ -4877,8 +4882,8 @@
         "affectsGlobalScope": false
       },
       "../src/modules/account/account.controller.ts": {
-        "version": "92db1c45fb6aa66fa58843677087b7fdb5f43bbff086fd431eb9722f31b2fb82",
-        "signature": "0bd62155e7dae28df1168984028b3b55e63e18f2b09fa9a9e87edfd9a4e8ef7e",
+        "version": "2ec2ff6e25e9c82abfedefea7d4f64e5985cf2aba4bf5c2b3e636bc99d175ae8",
+        "signature": "5c27246630698989fcf1e8206febc62d1feb6261815344dfa5cffed93ff06798",
         "affectsGlobalScope": false
       },
       "../src/modules/account/account.module.ts": {
@@ -5022,7 +5027,7 @@
         "affectsGlobalScope": false
       },
       "../src/modules/services-sait/services-sait.service.ts": {
-        "version": "589f0eeb2ee770ba3cbef928b3df6f49af902a062dd219cf4c415d04ab28de57",
+        "version": "ef5347e46a100b6b3b754aa0dca7c5115a69c0f6051e2e1e604fd0595b10192b",
         "signature": "f1f2cc20d5a1840abbb59322a551e7b902f404203cffd4b3ba7b1ea7fe6957cb",
         "affectsGlobalScope": false
       },
@@ -5482,7 +5487,7 @@
         "affectsGlobalScope": false
       },
       "../src/modules/service-request/service-request.service.ts": {
-        "version": "5ea12c421a3b21da2c0a26c3093870b1c76c6b3623ffb0c6e061893dd119fd93",
+        "version": "b5dacf6b61ba08307ecaa7c6a695846f0346e233835152a297e66fcb03409ae8",
         "signature": "1f5ff9fa79fecf2ecb358ef368dc87c7bb787dbe305fdd57193bfdc3c93f737c",
         "affectsGlobalScope": false
       },
@@ -5703,12 +5708,12 @@
       },
       "../src/modules/pricing/dtos/response/get-pricing-to-clone.dto.ts": {
         "version": "41500602a9d8faa8f4b28700fa2a92dfb15f580c9bbbe5c61aaf3b9f524689e5",
-        "signature": "88e7502d341a8791b2c6d468d0e78e10bbc8c99048b7b345f07e6cf6dc14f18b",
+        "signature": "05a9c49fbf8ea433b4bf88370de04f9de3ae507acb90defc78a83c7ae6fc9af7",
         "affectsGlobalScope": false
       },
       "../src/modules/pricing/pricing.service.ts": {
         "version": "afa9c9bdb37b5634e00dd76bd6e36beadf44150fb392b262f1fcb11560e20ffa",
-        "signature": "de609175138edbd22d743d7c66772edd8498e23e8cf7a0172472b24a9d33de90",
+        "signature": "3e2c9ed9c929065450f4e08d19cbf63a6d86dbeb6831acc007dc4bed52248f08",
         "affectsGlobalScope": false
       },
       "../src/modules/pricing/pricing.controller.ts": {
@@ -5747,7 +5752,7 @@
         "affectsGlobalScope": false
       },
       "../src/main.ts": {
-        "version": "9181b6fa67719715f697e5ffa2ee059fff864b631cf0e61a193adee2b3efc838",
+        "version": "9df3c420455cdf720bd5d2f495e6dda0b78bce955456552dcbef55b7b0445ee7",
         "signature": "3b3cbe89219f5c7208870ae9336c27c597cc0148fa7858e25ee8561172abbec9",
         "affectsGlobalScope": false
       },
@@ -5824,6 +5829,11 @@
       "../src/migration/1681997558731-addhascustompricinginaccountentity.ts": {
         "version": "0a6b1d1fdfa79cf1094a2317315b0a7e2898d949031ebe452c6685ab7aedd01d",
         "signature": "0e1854cb5d113191d0243877d227a79ad0004c18a52286f27e74421f5d5d4314",
+        "affectsGlobalScope": false
+      },
+      "../src/modules/account/dtos/update-tariffaccount.dto.ts": {
+        "version": "9e59cc16c3596a11107c56962f27b30c42aa5bdeb5fd8f318b1b6d1872fd9b03",
+        "signature": "412706fd1330a8b0c4e49f0171949f571e60e978057b274e7f157874fd7da7ae",
         "affectsGlobalScope": false
       },
       "../src/shared/validators/position-default-value-validator.ts": {
@@ -9925,6 +9935,9 @@
       "../src/modules/account/dtos/account-created.dto.ts": [
         "../node_modules/class-validator/types/index.d.ts"
       ],
+      "../src/modules/account/dtos/account-typetariff.dto.ts": [
+        "../node_modules/class-validator/types/index.d.ts"
+      ],
       "../src/modules/account/dtos/chage-has-custom-pricing-field.ts": [
         "../node_modules/@nestjs/swagger/index.d.ts",
         "../node_modules/class-validator/types/index.d.ts"
@@ -9937,6 +9950,7 @@
       ],
       "../src/modules/account/dtos/index.ts": [
         "../src/modules/account/dtos/account-created.dto.ts",
+        "../src/modules/account/dtos/account-typetariff.dto.ts",
         "../src/modules/account/dtos/create-account.dto.ts",
         "../src/modules/account/dtos/deactivate-account.dto.ts",
         "../src/modules/account/dtos/update-account.dto.ts"
@@ -9944,6 +9958,10 @@
       "../src/modules/account/dtos/update-account.dto.ts": [
         "../node_modules/@nestjs/swagger/index.d.ts",
         "../node_modules/class-validator/types/index.d.ts",
+        "../src/modules/account/dtos/create-account.dto.ts"
+      ],
+      "../src/modules/account/dtos/update-tariffaccount.dto.ts": [
+        "../node_modules/@nestjs/swagger/index.d.ts",
         "../src/modules/account/dtos/create-account.dto.ts"
       ],
       "../src/modules/account/entities/account.entity.ts": [
@@ -14602,11 +14620,16 @@
       ],
       "../src/modules/account/dtos/index.ts": [
         "../src/modules/account/dtos/account-created.dto.ts",
+        "../src/modules/account/dtos/account-typetariff.dto.ts",
         "../src/modules/account/dtos/create-account.dto.ts",
         "../src/modules/account/dtos/deactivate-account.dto.ts",
         "../src/modules/account/dtos/update-account.dto.ts"
       ],
       "../src/modules/account/dtos/update-account.dto.ts": [
+        "../node_modules/@nestjs/common/index.d.ts",
+        "../src/modules/account/dtos/create-account.dto.ts"
+      ],
+      "../src/modules/account/dtos/update-tariffaccount.dto.ts": [
         "../node_modules/@nestjs/common/index.d.ts",
         "../src/modules/account/dtos/create-account.dto.ts"
       ],

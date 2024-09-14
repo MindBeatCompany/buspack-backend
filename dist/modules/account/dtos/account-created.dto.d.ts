@@ -3,5 +3,6 @@ export declare class AccountCreatedDto {
     companyName: string;
     codeECO: string;
     accountType: string;
+    tariffType: string;
     filePath: string;
 }

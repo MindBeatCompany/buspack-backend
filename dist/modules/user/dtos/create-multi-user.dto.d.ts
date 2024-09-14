@@ -14,6 +14,7 @@ export declare class CreateMultiUserDto {
     country: string;
     accountType: string;
     codeEco: string;
+    tariffType: string;
     filePath: string;
     users: CreateUserDto[];
 }

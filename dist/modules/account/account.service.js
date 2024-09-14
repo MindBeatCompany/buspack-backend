@@ -53,6 +53,13 @@ let AccountService = class AccountService {
         const updatedAccount = this.accountRepository.merge(accountFound, newValue);
         return await this.accountRepository.save(updatedAccount);
     }
+    async updateTariffType(id, newValue) {
+        const accountFound = await this.accountRepository.findOne({ id });
+        if (!accountFound)
+            throw new Error(strings_constants_1.default.noAccount);
+        const updatedAccount = this.accountRepository.merge(accountFound, newValue);
+        return await this.accountRepository.save(updatedAccount);
+    }
     async delete(id) {
         throw new Error("Method not implemented.");
     }

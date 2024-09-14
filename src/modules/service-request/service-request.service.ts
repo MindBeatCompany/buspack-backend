@@ -881,145 +881,216 @@ export class ServiceRequestService {
 
         // SETEO DE TARIFA EN BASE A TENER O NO UN TARIFARIO CUSTOM
         if (account.hasCustomPricing) {
-          const pricing = await this.accountRepository.findOneOrFail({ id: account.id }, { relations: ["pricings"] })
-            .then(account => {
-              if (!account.pricings || account.currentPricing() === null) {
-                this.error = true;
+              const pricing = await this.accountRepository.findOneOrFail({ id: account.id }, { relations: ["pricings"] })
+                .then(account => {
+                  if (!account.pricings || account.currentPricing() === null) {
+                    this.error = true;
+                  }
+                  return account.currentPricing();
+                });
+
+              if (this.error) {
+                errorRequest.qty = errorRequest.qty + 1;
+                this.error = false;
+                errorRequest.detail = errorRequest.detail.concat(`- Fila ${index + 1}: ${account.companyName} no tiene un tarifario creado o vigente\n`)
+                return;
               }
-              return account.currentPricing();
-            });
 
-          if (this.error) {
-            errorRequest.qty = errorRequest.qty + 1;
-            this.error = false;
-            errorRequest.detail = errorRequest.detail.concat(`- Fila ${index + 1}: ${account.companyName} no tiene un tarifario creado o vigente\n`)
-            return;
-          }
+              // Destino
+              const placeArray = await this.enabledPlaceRepository.find({
+                where: {
+                  place_name: row.enabledPlace,
+                },
+              });          
+              if (placeArray.length === 0) {
+                errorRequest.qty = errorRequest.qty + 1;
+                errorRequest.detail = errorRequest.detail.concat(`- Fila ${index + 1}: El enabled place ${row.enabledPlace} no fue encontrado o no esta activo.\n`)
+                return;
+              }
 
-          // Destino
-          const placeArray = await this.enabledPlaceRepository.find({
-            where: {
-              place_name: row.enabledPlace,
-            },
-          });          
-          if (placeArray.length === 0) {
-            errorRequest.qty = errorRequest.qty + 1;
-            errorRequest.detail = errorRequest.detail.concat(`- Fila ${index + 1}: El enabled place ${row.enabledPlace} no fue encontrado o no esta activo.\n`)
-            return;
-          }
+              const enabledPlace = placeArray[0];
 
-          const enabledPlace = placeArray[0];
+              myRow.idog_lugar_destino = parseInt(placeArray[0].idog); // se saca de BD Enabled Places
+              myRow.desc_lugar_destino = row.enabledPlace; // enabled places
 
-          myRow.idog_lugar_destino = parseInt(placeArray[0].idog); // se saca de BD Enabled Places
-          myRow.desc_lugar_destino = row.enabledPlace; // enabled places
+              const area = pricing.getAreaFromEnabledPlace(enabledPlace);
 
-          const area = pricing.getAreaFromEnabledPlace(enabledPlace);
+              if (area === null ) {
+                errorRequest.qty = errorRequest.qty + 1;
+                errorRequest.detail = errorRequest.detail.concat(`- Fila ${index + 1}: ${enabledPlace.place_name} con idog ${enabledPlace.idog} no fue encontrado en el tarifario personalizado de ${account.companyName}\n`)
+                return ;
+              }
 
-          if (area === null ) {
-            errorRequest.qty = errorRequest.qty + 1;
-            errorRequest.detail = errorRequest.detail.concat(`- Fila ${index + 1}: ${enabledPlace.place_name} con idog ${enabledPlace.idog} no fue encontrado en el tarifario personalizado de ${account.companyName}\n`)
-            return ;
-          }
-
-        const desiredWeight = row.totalWeight / row.qtyPieces;
-        const pricingRow = area.getPriceRowFrom(desiredWeight);
-        if (pricingRow === null ) {
-          errorRequest.qty = errorRequest.qty + 1;
-          errorRequest.detail = errorRequest.detail.concat(`- Fila ${index + 1}: No se ha encontrado un precio para el peso en el tarifario personalizado de ${account.companyName}\n`)
-          return ;
-        }
-
-        myRow.valor_declarado = 0; // va cero
-        myRow.id_seguro = generalSettings.idSeguro; //config BD
-        myRow.seguro = pricingRow.insurance * row.qtyPieces; //Tarifario
-        myRow.letra_comprobante = generalSettings.letraComprobante; //config BD
-        myRow.boca_comprobante = generalSettings.bocaComprobante; //config BD
-
-        const tarifa = pricingRow.basePrice;
-        // Tarifas
-        myRow.valor_flete = tarifa * row.qtyPieces;
-        myRow.valor_com_c_imp = tarifa * row.qtyPieces;
-        myRow.valor_com_s_imp = this.round((tarifa * row.qtyPieces) / 1.21);
-
-        // Tarifa
-        myRow.retiro_a_domicilio = 0;
-        myRow.idretiro_a_domicilio = generalSettings.idRetiroADomicilio; //config BD
-        myRow.valor_retiro_domicilio = pricingRow.homeWithdrawal * row.qtyPieces;
-
-        // Tarifa
-        if (row.homeDelivery) {
-          myRow.envio_domicilio = 1;
-          myRow.valor_entrega_domicilio = pricingRow.homeDelivery * row.qtyPieces; // valor Tarifario
-        } else {
-          myRow.envio_domicilio = 0;
-          myRow.valor_entrega_domicilio = 0;
-        }
-
-        saitRequest.push(myRow);
-        createRequest.qty = createRequest.qty + 1;
-
-      } else {
-
-          // Destino
-          await this.enabledPlaceRepository.find({
-            where: {
-              place_name: row.enabledPlace,
-            },
-          }).then(async placeArray => {
-            const zona = await this.zonesRepository.findOne({
-              cp: addressCpa
-            });
-
-            if (placeArray.length == 0) {
-              console.log("No existe enabled_place: ", addressCpa);
+            const desiredWeight = row.totalWeight / row.qtyPieces; // esto es el peso RESULTANTE QUE VA A BUSCAR AL TARIFARIO
+            const pricingRow = area.getPriceRowFrom(desiredWeight);
+            if (pricingRow === null ) {
+              errorRequest.qty = errorRequest.qty + 1;
+              errorRequest.detail = errorRequest.detail.concat(`- Fila ${index + 1}: No se ha encontrado un precio para el peso en el tarifario personalizado de ${account.companyName}\n`)
+              return ;
             }
 
-            myRow.idog_lugar_destino = parseInt(placeArray[0].idog); // se saca de BD Enabled Places
-            myRow.desc_lugar_destino = row.enabledPlace; // enabled places
+            myRow.valor_declarado = 0; // va cero
+            myRow.id_seguro = generalSettings.idSeguro; //config BD
+            myRow.seguro = pricingRow.insurance * row.qtyPieces; //Tarifario
+            myRow.letra_comprobante = generalSettings.letraComprobante; //config BD
+            myRow.boca_comprobante = generalSettings.bocaComprobante; //config BD
 
-            //Tarifa
-            await this.tariffRepository.find({
-              where: {
-                account: account,
-                weightFrom: LessThanOrEqual(row.totalWeight / row.qtyPieces),
-                weightTo: MoreThanOrEqual(row.totalWeight / row.qtyPieces)
-              },
-            }).then(tariffArray => {
+            const tarifa = pricingRow.basePrice;
+            // Tarifas
+            myRow.valor_flete = tarifa * row.qtyPieces;
+            myRow.valor_com_c_imp = tarifa * row.qtyPieces;
+            myRow.valor_com_s_imp = this.round((tarifa * row.qtyPieces) / 1.21);
 
-              const tariff = tariffArray[0];
+            // Tarifa
+            myRow.retiro_a_domicilio = 0;
+            myRow.idretiro_a_domicilio = generalSettings.idRetiroADomicilio; //config BD
+            myRow.valor_retiro_domicilio = pricingRow.homeWithdrawal * row.qtyPieces;
 
-              myRow.valor_declarado = 0; // va cero
-              myRow.id_seguro = generalSettings.idSeguro; //config BD
-              myRow.seguro = tariff.insurance * row.qtyPieces; //Tarifario
-              myRow.letra_comprobante = generalSettings.letraComprobante; //config BD
-              myRow.boca_comprobante = generalSettings.bocaComprobante; //config BD
+            // Tarifa
+            if (row.homeDelivery) {
+              myRow.envio_domicilio = 1;
+              myRow.valor_entrega_domicilio = pricingRow.homeDelivery * row.qtyPieces; // valor Tarifario
+            } else {
+              myRow.envio_domicilio = 0;
+              myRow.valor_entrega_domicilio = 0;
+            }
 
-              const tarifa = tariff[zona.zone];
-              // Tarifas
-              myRow.valor_flete = tarifa * row.qtyPieces;
-              myRow.valor_com_c_imp = tarifa * row.qtyPieces;
-              myRow.valor_com_s_imp = this.round((tarifa * row.qtyPieces) / 1.21);
+            saitRequest.push(myRow);
+            createRequest.qty = createRequest.qty + 1;
 
-              // Tarifa
-              myRow.retiro_a_domicilio = 0;
-              myRow.idretiro_a_domicilio = generalSettings.idRetiroADomicilio; //config BD
-              myRow.valor_retiro_domicilio = tariff.homeWithdrawal * row.qtyPieces;
+        }else {
 
-              // Tarifa
-              if (row.homeDelivery) {
-                myRow.envio_domicilio = 1;
-                myRow.valor_entrega_domicilio = tariff.homeDelivery * row.qtyPieces; // valor Tarifario
-              } else {
-                myRow.envio_domicilio = 0;
-                myRow.valor_entrega_domicilio = 0;
-              }
 
-              saitRequest.push(myRow);
-              createRequest.qty = createRequest.qty + 1;
-            });
-          });
-        }
-      }));
+                    if(accountClient.tariffType == 'BY_PIECE'){
+
+                        // Destino
+                        await this.enabledPlaceRepository.find({
+                          where: {
+                            place_name: row.enabledPlace,
+                          },
+                        }).then(async placeArray => {
+                          const zona = await this.zonesRepository.findOne({
+                            cp: addressCpa
+                          });
+
+                          if (placeArray.length == 0) {
+                            console.log("No existe enabled_place: ", addressCpa);
+                          }
+
+                          myRow.idog_lugar_destino = parseInt(placeArray[0].idog); // se saca de BD Enabled Places
+                          myRow.desc_lugar_destino = row.enabledPlace; // enabled places
+
+                          //Tarifa
+                          await this.tariffRepository.find({
+                            where: {
+                              account: account,
+                              weightFrom: LessThanOrEqual(row.totalWeight / row.qtyPieces),
+                              weightTo: MoreThanOrEqual(row.totalWeight / row.qtyPieces)
+                            },
+                          }).then(tariffArray => {
+
+                            const tariff = tariffArray[0];
+
+                            myRow.valor_declarado = 0; // va cero
+                            myRow.id_seguro = generalSettings.idSeguro; //config BD
+                            myRow.seguro = tariff.insurance * row.qtyPieces; //Tarifario
+                            myRow.letra_comprobante = generalSettings.letraComprobante; //config BD
+                            myRow.boca_comprobante = generalSettings.bocaComprobante; //config BD
+
+                            const tarifa = tariff[zona.zone];
+                            // Tarifas
+                            myRow.valor_flete = tarifa * row.qtyPieces;
+                            myRow.valor_com_c_imp = tarifa * row.qtyPieces;
+                            myRow.valor_com_s_imp = this.round((tarifa * row.qtyPieces) / 1.21);
+
+                            // Tarifa
+                            myRow.retiro_a_domicilio = 0;
+                            myRow.idretiro_a_domicilio = generalSettings.idRetiroADomicilio; //config BD
+                            myRow.valor_retiro_domicilio = tariff.homeWithdrawal * row.qtyPieces;
+
+                            // Tarifa
+                            if (row.homeDelivery) {
+                              myRow.envio_domicilio = 1;
+                              myRow.valor_entrega_domicilio = tariff.homeDelivery * row.qtyPieces; // valor Tarifario
+                            } else {
+                              myRow.envio_domicilio = 0;
+                              myRow.valor_entrega_domicilio = 0;
+                            }
+
+                            saitRequest.push(myRow);
+                            createRequest.qty = createRequest.qty + 1;
+                          });
+                        });
+                  }
+                  else if(accountClient.tariffType == 'BY_SHIPMENT'){
+
+                    // Destino
+                    await this.enabledPlaceRepository.find({
+                      where: {
+                        place_name: row.enabledPlace,
+                      },
+                    }).then(async placeArray => {
+                      const zona = await this.zonesRepository.findOne({
+                        cp: addressCpa
+                      });
+
+                      if (placeArray.length == 0) {     
+                        console.log("No existe enabled_place: ", addressCpa);
+                      }
+
+                      myRow.idog_lugar_destino = parseInt(placeArray[0].idog); // se saca de BD Enabled Places
+                      myRow.desc_lugar_destino = row.enabledPlace; // enabled places
+
+                      //Tarifa
+                      await this.tariffRepository.find({
+                        where: {
+                          account: account,
+                          weightFrom: LessThanOrEqual(row.totalWeight),
+                          weightTo: MoreThanOrEqual(row.totalWeight)
+                        },
+                      }).then(tariffArray => {
+
+                        const tariff = tariffArray[0];
+
+                        myRow.valor_declarado = 0; // va cero
+                        myRow.id_seguro = generalSettings.idSeguro; //config BD
+                        myRow.seguro = tariff.insurance; //Tarifario
+                        myRow.letra_comprobante = generalSettings.letraComprobante; //config BD
+                        myRow.boca_comprobante = generalSettings.bocaComprobante; //config BD
+
+                        const tarifa = tariff[zona.zone];
+                        // Tarifas
+                        myRow.valor_flete = tarifa ;
+                        myRow.valor_com_c_imp = tarifa ;
+                        myRow.valor_com_s_imp = this.round((tarifa) / 1.21);
+
+                        // Tarifa
+                        myRow.retiro_a_domicilio = 0;
+                        myRow.idretiro_a_domicilio = generalSettings.idRetiroADomicilio; //config BD
+                        myRow.valor_retiro_domicilio = tariff.homeWithdrawal;
+
+                        // Tarifa
+                        if (row.homeDelivery) {
+                          myRow.envio_domicilio = 1;
+                          myRow.valor_entrega_domicilio = tariff.homeDelivery; // valor Tarifario
+                        } else {
+                          myRow.envio_domicilio = 0;
+                          myRow.valor_entrega_domicilio = 0;
+                        }
+
+                        saitRequest.push(myRow);
+                        createRequest.qty = createRequest.qty + 1;
+                      });
+                    });
+
+                 }
+                 else{
+                  throw new Error("The tariffType for the client does not exists");
+                 }
+                                   
+            }
+
+              }));
 
       const workbook = utils.book_new();
       const worksheet = utils.json_to_sheet(saitRequest);

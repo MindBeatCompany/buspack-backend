@@ -14,7 +14,7 @@ const openapi = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
 class CreateMultiUserDto {
     static _OPENAPI_METADATA_FACTORY() {
-        return { companyName: { required: true, type: () => String }, idClientEntity: { required: true, type: () => Number }, idClientAgent: { required: true, type: () => Number }, cuit: { required: true, type: () => String }, addressStreet: { required: true, type: () => String }, addressNumber: { required: true, type: () => String }, addressBuilding: { required: true, type: () => String }, addressFloor: { required: true, type: () => String }, addressApartment: { required: true, type: () => String }, locality: { required: true, type: () => String }, province: { required: true, type: () => String }, country: { required: true, type: () => String }, accountType: { required: true, type: () => String }, codeEco: { required: true, type: () => String }, filePath: { required: true, type: () => String }, users: { required: true, type: () => [require("./createUser.dto").CreateUserDto] } };
+        return { companyName: { required: true, type: () => String }, idClientEntity: { required: true, type: () => Number }, idClientAgent: { required: true, type: () => Number }, cuit: { required: true, type: () => String }, addressStreet: { required: true, type: () => String }, addressNumber: { required: true, type: () => String }, addressBuilding: { required: true, type: () => String }, addressFloor: { required: true, type: () => String }, addressApartment: { required: true, type: () => String }, locality: { required: true, type: () => String }, province: { required: true, type: () => String }, country: { required: true, type: () => String }, accountType: { required: true, type: () => String }, codeEco: { required: true, type: () => String }, tariffType: { required: true, type: () => String }, filePath: { required: true, type: () => String }, users: { required: true, type: () => [require("./createUser.dto").CreateUserDto] } };
     }
 }
 __decorate([
@@ -75,6 +75,10 @@ __decorate([
     class_validator_1.IsString(),
     __metadata("design:type", String)
 ], CreateMultiUserDto.prototype, "codeEco", void 0);
+__decorate([
+    class_validator_1.IsString(),
+    __metadata("design:type", String)
+], CreateMultiUserDto.prototype, "tariffType", void 0);
 __decorate([
     class_validator_1.IsString(),
     class_validator_1.IsOptional(),

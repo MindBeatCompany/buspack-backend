@@ -74,6 +74,9 @@ export class AccountEntity {
   @Column({name: "has_custom_pricing", default: false})
   hasCustomPricing: boolean;
 
+  @Column({ name: "tariff_type", type: "varchar", length: 30 })
+  tariffType: string;
+
   // ACTIONS
   validatePricing(name: string, validSince: Date) {
     if (this.haveCurrentPricing() && validSince.getTime() <= this.currentPricing().validSince.getTime()) {

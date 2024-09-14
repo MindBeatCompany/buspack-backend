@@ -12,6 +12,9 @@ export class AccountCreatedDto {
 
   @IsString()
   accountType: string;
+  
+  @IsString()
+  tariffType: string;
 
   @IsString()
   filePath:string

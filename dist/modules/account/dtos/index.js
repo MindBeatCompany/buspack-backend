@@ -14,4 +14,5 @@ __exportStar(require("./account-created.dto"), exports);
 __exportStar(require("./create-account.dto"), exports);
 __exportStar(require("./update-account.dto"), exports);
 __exportStar(require("./deactivate-account.dto"), exports);
+__exportStar(require("./account-typetariff.dto"), exports);
 //# sourceMappingURL=index.js.map

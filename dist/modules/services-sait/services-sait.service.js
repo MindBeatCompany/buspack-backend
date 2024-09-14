@@ -169,6 +169,10 @@ let ServicesSaitService = class ServicesSaitService {
         let _ax = this.http.axiosRef;
         return await _ax.get(this._urlSait + sait_url_enums_1.SaitUrlEnum.DELIVERY_STATUS + `?numero=${numero}`, { headers: config })
             .then(async (value) => {
+            console.log("imprimo solo el value q retorna");
+            console.log(value);
+            console.log("Imprimo lo que sair devuelve:");
+            console.log(value.data);
             return await this.mapSaitStatus(value.data);
         }).catch(reason => {
             console.log(reason);
@@ -176,6 +180,10 @@ let ServicesSaitService = class ServicesSaitService {
         });
     }
     async mapSaitStatus(data) {
+        console.log("Sait estado");
+        console.log("estado: ", data.estados);
+        console.log("Sait code estado:");
+        console.log("codeEstadi: ", data.estadodelivery.codestado);
         data.estadodelivery.estado = await this.getBuspackStatusByAlphanumeric(data.estadodelivery.codestado);
         let addedStatus = [];
         let uniqueStatus = [];
