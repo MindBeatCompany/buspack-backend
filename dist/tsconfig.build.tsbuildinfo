@@ -4422,18 +4422,18 @@
         "affectsGlobalScope": false
       },
       "../src/modules/account/dtos/account-created.dto.ts": {
-        "version": "e74c8366a0d0371b58285f10fe7f6d0062d56777f03f89031a89526c979926be",
+        "version": "4ab16cdc8ee482ac33bfb3e887a3d596357f88e48f455c7fd71416645df8858a",
         "signature": "b8383e6cc6fcbca684e8da1dad65d74d0ced11278bc888b1093dd732f47245be",
         "affectsGlobalScope": false
       },
       "../src/modules/account/dtos/create-account.dto.ts": {
-        "version": "7f28bf0a9e13be427102967629ee23354285c10f65ea6b73daec0a803b333668",
+        "version": "1f53093e360ec6c490daa2f9744559d6713f91be9c6339880c5c9e0a2c5573eb",
         "signature": "30bd6ab2a4800a9478d8d1dc353f435b8bcd644974b29889e05c0d1d7fa3ba8d",
         "affectsGlobalScope": false
       },
       "../src/modules/account/dtos/update-account.dto.ts": {
-        "version": "348c2bad6a5815f518dd5c0f4a422b018a6292b8b6c4bbeb05d1ce752c0dadd2",
-        "signature": "67d34f2bdf11c7ac8a7a4b4e98260295862dc8de096ad3daa5fc548b26108b88",
+        "version": "464d6e221adbaaa6f03ee09ad5d86572982e238c47b406ed3aa3f5bf13fa440f",
+        "signature": "ef062928ebddee330754ce734ee3a8b71f955f1b91b7180271a036ea1f1f53da",
         "affectsGlobalScope": false
       },
       "../src/modules/account/dtos/deactivate-account.dto.ts": {
@@ -5708,7 +5708,7 @@
       },
       "../src/modules/pricing/dtos/response/get-pricing-to-clone.dto.ts": {
         "version": "41500602a9d8faa8f4b28700fa2a92dfb15f580c9bbbe5c61aaf3b9f524689e5",
-        "signature": "05a9c49fbf8ea433b4bf88370de04f9de3ae507acb90defc78a83c7ae6fc9af7",
+        "signature": "88e7502d341a8791b2c6d468d0e78e10bbc8c99048b7b345f07e6cf6dc14f18b",
         "affectsGlobalScope": false
       },
       "../src/modules/pricing/pricing.service.ts": {

@@ -12,7 +12,8 @@ export class CreateAccountDto {
 
   @IsBoolean()
   isActive: boolean;
-
+  
+  @IsOptional()
   @IsString()
   filePath: string;
 
@@ -60,6 +61,7 @@ export class CreateAccountDto {
   @IsString()
   cuil: string;
 
+  @IsOptional()
   @IsString()
   tariffType: string;
 }

@@ -8,6 +8,7 @@ class UpdateAccountDto extends swagger_1.PickType(create_account_dto_1.CreateAcc
     "companyName",
     "codeECO",
     "filePath",
+    "tariffType",
 ]) {
     static _OPENAPI_METADATA_FACTORY() {
         return {};

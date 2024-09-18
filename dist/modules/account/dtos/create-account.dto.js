@@ -34,6 +34,7 @@ __decorate([
     __metadata("design:type", Boolean)
 ], CreateAccountDto.prototype, "isActive", void 0);
 __decorate([
+    class_validator_1.IsOptional(),
     class_validator_1.IsString(),
     __metadata("design:type", String)
 ], CreateAccountDto.prototype, "filePath", void 0);
@@ -93,6 +94,7 @@ __decorate([
     __metadata("design:type", String)
 ], CreateAccountDto.prototype, "cuil", void 0);
 __decorate([
+    class_validator_1.IsOptional(),
     class_validator_1.IsString(),
     __metadata("design:type", String)
 ], CreateAccountDto.prototype, "tariffType", void 0);
