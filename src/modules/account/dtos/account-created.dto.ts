@@ -18,4 +18,5 @@ export class AccountCreatedDto {
 
   @IsString()
   filePath:string
+
 }

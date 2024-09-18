@@ -6,4 +6,5 @@ export class UpdateAccountDto extends PickType(CreateAccountDto, [
   "companyName",
   "codeECO",
   "filePath",
+  "tariffType",
 ]) {}
