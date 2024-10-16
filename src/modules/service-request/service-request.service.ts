@@ -881,6 +881,8 @@ export class ServiceRequestService {
 
         // SETEO DE TARIFA EN BASE A TENER O NO UN TARIFARIO CUSTOM
         if (account.hasCustomPricing) {
+
+          console.log("---------------------- //   account.hasCustomPricing   // ----------------------------");
               const pricing = await this.accountRepository.findOneOrFail({ id: account.id }, { relations: ["pricings"] })
                 .then(account => {
                   if (!account.pricings || account.currentPricing() === null) {
@@ -962,7 +964,7 @@ export class ServiceRequestService {
 
 
                     if(accountClient.tariffType == 'BY_PIECE'){
-
+                        console.log("---------------------- //   BY_PIECE   // ----------------------------");
                         // Destino
                         await this.enabledPlaceRepository.find({
                           where: {
@@ -1023,7 +1025,7 @@ export class ServiceRequestService {
                         });
                   }
                   else if(accountClient.tariffType == 'BY_SHIPMENT'){
-
+                    console.log("---------------------- //   BY_SHIPMENT   // ----------------------------");  
                     // Destino
                     await this.enabledPlaceRepository.find({
                       where: {
