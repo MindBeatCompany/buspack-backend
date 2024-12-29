@@ -72,7 +72,7 @@ export class PrintLabelsService {
           // .stroke()
           .text("N° de guia:", marginlefttext1 + 150, initLine + lineHeight * 8)
           .text(
-            data[i * 2].pieceId + "",
+            data[i * 2].voucher + "",
             marginlefttext1 + 210,
             initLine + lineHeight * 8
           )
