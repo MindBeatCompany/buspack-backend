@@ -218,7 +218,7 @@ export class PrintLabelsService {
             )
             .text("N° de guia:", marginlefttext2 + 150, initLine + lineHeight * 8)
             .text(
-              data[i * 2 + 1].pieceId + "",
+              data[i * 2 + 1].voucher + "",
               marginlefttext2 + 210,
               initLine + lineHeight * 8
             )
