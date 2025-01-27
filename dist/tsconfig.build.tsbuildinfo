@@ -3637,7 +3637,7 @@
         "affectsGlobalScope": false
       },
       "../src/modules/service-request/entities/service-request.entity.ts": {
-        "version": "6dd424af845058a9896a92b3228085b1d1901a69a59ff8c121cb8307cd99e309",
+        "version": "ab0d7a5c3f300477a29e14a22a8e49b94dd607de8a08c915dc661e47ed3cca51",
         "signature": "6864795254ba35882fbc37041a7cc3d570bc14c948bd54b54930c5fd582f4295",
         "affectsGlobalScope": false
       },
@@ -5487,7 +5487,7 @@
         "affectsGlobalScope": false
       },
       "../src/modules/service-request/service-request.service.ts": {
-        "version": "b5dacf6b61ba08307ecaa7c6a695846f0346e233835152a297e66fcb03409ae8",
+        "version": "7bfe26a4f10dbfbcc461ca3ce4317ab3ee4c9d448886f4aa39281840e642f8b2",
         "signature": "1f5ff9fa79fecf2ecb358ef368dc87c7bb787dbe305fdd57193bfdc3c93f737c",
         "affectsGlobalScope": false
       },
@@ -5612,7 +5612,7 @@
         "affectsGlobalScope": false
       },
       "../src/modules/print-labels/print-labels.service.ts": {
-        "version": "3db97a836893f02b837b38f1bc6dc86b21b1a603b5ad74ef6bd93eee2eb023ad",
+        "version": "7b156db78f055af800f95027fab465a2004e1c9b07528f475433eaaf8847aacc",
         "signature": "826198fddb6371a37235d8d6d58b9f58a806dc4d80fd600703b418b017c1710d",
         "affectsGlobalScope": false
       },

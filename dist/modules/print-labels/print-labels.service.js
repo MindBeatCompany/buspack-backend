@@ -63,7 +63,7 @@ let PrintLabelsService = class PrintLabelsService {
                     .text("N° del pedido:", marginlefttext1, initLine + lineHeight * 8)
                     .text(this.overflowTextUndefined(data[i * 2].idRequest.toString()) + "", marginlefttext1 + 68, initLine + lineHeight * 8)
                     .text("N° de guia:", marginlefttext1 + 150, initLine + lineHeight * 8)
-                    .text(data[i * 2].pieceId + "", marginlefttext1 + 210, initLine + lineHeight * 8)
+                    .text(data[i * 2].voucher + "", marginlefttext1 + 210, initLine + lineHeight * 8)
                     .image(barCode1, marginlefttext1 + 80, initLine + lineHeight * 9, {
                     width: 120,
                 })
@@ -156,7 +156,7 @@ let PrintLabelsService = class PrintLabelsService {
                         .text("N° del pedido:", marginlefttext2, initLine + lineHeight * 8)
                         .text(data[i * 2 + 1].idRequest + "", marginlefttext2 + 68, initLine + lineHeight * 8)
                         .text("N° de guia:", marginlefttext2 + 150, initLine + lineHeight * 8)
-                        .text(data[i * 2 + 1].pieceId + "", marginlefttext2 + 210, initLine + lineHeight * 8)
+                        .text(data[i * 2 + 1].voucher + "", marginlefttext2 + 210, initLine + lineHeight * 8)
                         .image(barCode2, marginlefttext2 + 66, initLine + lineHeight * 9, {
                         width: 120,
                     })

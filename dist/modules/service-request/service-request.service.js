@@ -665,6 +665,7 @@ let ServiceRequestService = class ServiceRequestService {
                 myRow.cp_agencia_destino = "";
                 myRow.id_otros_importes = generalSettings.otrosImportes;
                 if (account.hasCustomPricing) {
+                    console.log("---------------------- //   account.hasCustomPricing   // ----------------------------");
                     const pricing = await this.accountRepository.findOneOrFail({ id: account.id }, { relations: ["pricings"] })
                         .then(account => {
                         if (!account.pricings || account.currentPricing() === null) {
@@ -729,6 +730,7 @@ let ServiceRequestService = class ServiceRequestService {
                 }
                 else {
                     if (accountClient.tariffType == 'BY_PIECE') {
+                        console.log("---------------------- //   BY_PIECE   // ----------------------------");
                         await this.enabledPlaceRepository.find({
                             where: {
                                 place_name: row.enabledPlace,
@@ -776,6 +778,7 @@ let ServiceRequestService = class ServiceRequestService {
                         });
                     }
                     else if (accountClient.tariffType == 'BY_SHIPMENT') {
+                        console.log("---------------------- //   BY_SHIPMENT   // ----------------------------");
                         await this.enabledPlaceRepository.find({
                             where: {
                                 place_name: row.enabledPlace,
