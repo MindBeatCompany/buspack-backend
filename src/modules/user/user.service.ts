@@ -585,12 +585,12 @@ export class UserService implements CrudOperations {
     ];
     const fillData = utils.sheet_to_json(worksheet, {
       header,
-      range: "C2:M102",
+      range: "C2:M300",
     });
 
     const rawData = utils.sheet_to_json(worksheet, {
       header,
-      range: "A3:M102",
+      range: "A3:M300",
     });
     const tariff: TariffEntity[] = [];
 
