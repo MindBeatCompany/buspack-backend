@@ -550,7 +550,7 @@ export class UserService implements CrudOperations {
       throw new Error(messages.invalidFileFormat);
     }
     const workbook = readFile(file.path);
-    workbook.Sheets[workbook.SheetNames[0]]["!ref"] = "A2:M102";
+    workbook.Sheets[workbook.SheetNames[0]]["!ref"] = "A2:M300";
     const worksheet = workbook.Sheets[workbook.SheetNames[0]];
     const header = [
       "weightFrom",
