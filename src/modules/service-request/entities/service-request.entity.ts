@@ -35,7 +35,7 @@ export class ServiceRequestEntity {
   @Column({ name: "email", type: "varchar", length: 50, nullable: true })
   email: string;
 
-  @Column({ name: "address_street", type: "varchar", length: 50, nullable: false })
+  @Column({ name: "address_street", type: "varchar", length: 255, nullable: false })
   addressStreet: string;
 
   @Column({ name: "address_number", type: "varchar", length: 50, nullable: true})
@@ -47,7 +47,7 @@ export class ServiceRequestEntity {
   @Column({ name: "address_floor", type: "varchar", length: 10, nullable: true })
   addressFloor: string;
 
-  @Column({ name: "address_apartment", type: "varchar", length: 50, nullable: true })
+  @Column({ name: "address_apartment", type: "varchar", length: 255, nullable: true })
   addressApartment: string;
   
   @Column({ name: "address_cpa", type: "varchar", length: 10, nullable: true })
@@ -81,7 +81,7 @@ export class ServiceRequestEntity {
   @Column({ name: "home_delivery", type: "boolean", default: false, nullable: false })
   homeDelivery: boolean;
 
-  @Column({ name: "observations", type: "varchar", length: 50, nullable: true })
+  @Column({ name: "observations", type: "varchar", length: 255, nullable: true })
   observations: string;
 
   @Column({ name: "idfile", type: "varchar", length: 255, nullable: true })
