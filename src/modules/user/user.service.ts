@@ -550,7 +550,7 @@ export class UserService implements CrudOperations {
       throw new Error(messages.invalidFileFormat);
     }
     const workbook = readFile(file.path);
-    workbook.Sheets[workbook.SheetNames[0]]["!ref"] = "A2:M102";
+    workbook.Sheets[workbook.SheetNames[0]]["!ref"] = "A2:M300";
     const worksheet = workbook.Sheets[workbook.SheetNames[0]];
     const header = [
       "weightFrom",
@@ -585,12 +585,12 @@ export class UserService implements CrudOperations {
     ];
     const fillData = utils.sheet_to_json(worksheet, {
       header,
-      range: "C2:M102",
+      range: "C2:M300",
     });
 
     const rawData = utils.sheet_to_json(worksheet, {
       header,
-      range: "A3:M102",
+      range: "A3:M300",
     });
     const tariff: TariffEntity[] = [];
 
