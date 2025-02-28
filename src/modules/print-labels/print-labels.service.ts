@@ -291,7 +291,7 @@ export class PrintLabelsService {
             .lineTo(680, secondLine + lineHeight * 9 - offset)
             .stroke()
             .text(
-              data[i * 2].phone,
+              data[i * 2 + 1].phone,
               marginlefttext2 + 52,
               secondLine + lineHeight * 8
             )
@@ -307,7 +307,7 @@ export class PrintLabelsService {
             .lineTo(680, secondLine + lineHeight * 11 - offset)
             .stroke()
             .text(
-              data[i * 2].observations,
+              data[i * 2 + 1].observations,
               marginlefttext2 + 80,
               secondLine + lineHeight * 10
             )
