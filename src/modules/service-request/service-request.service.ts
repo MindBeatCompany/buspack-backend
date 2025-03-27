@@ -266,7 +266,7 @@ export class ServiceRequestService {
             labelReturn.pieceId = piece;
             labelReturn.recipientFullname = myElement.recipientFullname;
             labelReturn.address = myElement.addressStreet + " " + (myElement.addressNumber == null ? "" : myElement.addressNumber) + " " + (myElement.addressBuilding == null ? "" : myElement.addressBuilding) + " " + (myElement.addressFloor == null ? "" : myElement.addressFloor) + " " + (myElement.addressApartment == null ? "" : myElement.addressApartment);
-            labelReturn.cpa = myElement.cpa;
+            labelReturn.cpa = myElement.homeDelivery ? myElement.addressCpa : myElement.cpa; 
             labelReturn.city = myElement.locality;
             labelReturn.province = myElement.province;
             labelReturn.requestId = myElement.requestId;
@@ -331,7 +331,7 @@ export class ServiceRequestService {
           labelReturn.pieceId = piece;
           labelReturn.recipientFullname = myElement.recipientFullname;
           labelReturn.address = myElement.addressStreet + " " + (myElement.addressNumber == null ? "" : myElement.addressNumber) + " " + (myElement.addressBuilding == null ? "" : myElement.addressBuilding) + " " + (myElement.addressFloor == null ? "" : myElement.addressFloor) + " " + (myElement.addressApartment == null ? "" : myElement.addressApartment);
-          labelReturn.cpa = myElement.cpa;
+          labelReturn.cpa = myElement.homeDelivery ? myElement.addressCpa : myElement.cpa; 
           labelReturn.city = myElement.locality;
           labelReturn.province = myElement.province;
           labelReturn.requestId = myElement.requestId;
@@ -417,7 +417,7 @@ export class ServiceRequestService {
         queryReturn.requestId = element.requestId;
         queryReturn.recipientFullname = element.recipientFullname;
         queryReturn.address = (address == ' null' ? "" : address);
-        queryReturn.cpa = element.cpa;
+        queryReturn.cpa = element.homeDelivery ? element.addressCpa : element.cpa; ;
         queryReturn.city = element.locality;
         queryReturn.province = element.province;
         queryReturn.caja = element.qtyPieces;
